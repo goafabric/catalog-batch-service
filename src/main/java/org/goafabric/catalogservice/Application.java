@@ -4,6 +4,8 @@ import io.micrometer.observation.ObservationPredicate;
 import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
 import org.goafabric.catalogservice.service.persistence.bo.DiagnosisBo;
 import org.goafabric.catalogservice.service.persistence.bo.InsuranceBo;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.data.relational.core.mapping.event.BeforeConvertCallback;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,6 +26,7 @@ import java.util.UUID;
  */
 
 @SpringBootApplication
+@ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
 public class Application {
 
     public static void main(String[] args){
@@ -67,6 +71,14 @@ public class Application {
             if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
             return aggregate;
         };
+    }
+
+    static class ApplicationRuntimeHints implements RuntimeHintsRegistrar {
+        @Override
+        public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+            hints.resources().registerPattern("en/*.yml"); //needed for stupid faker
+            hints.resources().registerPattern("catalogs/*.csv");
+        }
     }
 
 
