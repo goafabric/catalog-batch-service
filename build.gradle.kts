@@ -50,7 +50,18 @@ dependencies {
 	//crosscuting
 	implementation("org.springframework.boot:spring-boot-starter-aop")
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	//implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+	//persistence
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+	implementation("com.h2database:h2")
+	implementation("org.postgresql:postgresql")
+
+	//code generation
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
+
+	implementation("org.mapstruct:mapstruct")
+	annotationProcessor("org.mapstruct:mapstruct-processor")
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
