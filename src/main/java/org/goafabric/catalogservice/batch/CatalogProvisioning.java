@@ -1,10 +1,10 @@
-package org.goafabric.catalogservice.persistence;
+package org.goafabric.catalogservice.batch;
 
 import lombok.extern.slf4j.Slf4j;
-import org.goafabric.catalogservice.controller.dto.ChargeItem;
-import org.goafabric.catalogservice.controller.dto.Diagnosis;
-import org.goafabric.catalogservice.controller.dto.Insurance;
-import org.goafabric.catalogservice.logic.CrudLogic;
+import org.goafabric.catalogservice.service.controller.dto.ChargeItem;
+import org.goafabric.catalogservice.service.controller.dto.Diagnosis;
+import org.goafabric.catalogservice.service.controller.dto.Insurance;
+import org.goafabric.catalogservice.service.logic.CrudLogic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,8 +1,8 @@
-package org.goafabric.catalogservice.logic;
+package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.controller.dto.Insurance;
-import org.goafabric.catalogservice.persistence.InsuranceRepository;
-import org.goafabric.catalogservice.persistence.bo.InsuranceBo;
+import org.goafabric.catalogservice.service.controller.dto.ChargeItem;
+import org.goafabric.catalogservice.service.persistence.ChargeItemRepository;
+import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,25 +12,25 @@ import java.util.List;
 
 @Component
 @Transactional
-public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
+public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        Insurance map(InsuranceBo o);
-        InsuranceBo map(Insurance o);
-        List<Insurance> map(List<InsuranceBo> l);
+        ChargeItem map(ChargeItemBo o);
+        ChargeItemBo map(ChargeItem o);
+        List<ChargeItem> map(List<ChargeItemBo> l);
     }
 
     private BoMapper mapper;
-    private InsuranceRepository repository;
+    private ChargeItemRepository repository;
 
-    public InsuranceCatalogLogic(BoMapper mapper, InsuranceRepository repository) {
+    public ChargeItemCatalogLogic(BoMapper mapper, ChargeItemRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
 
     @Override
-    public void create(Insurance Insurance) {
-        repository.save(mapper.map(Insurance));
+    public void create(ChargeItem ChargeItem) {
+        repository.save(mapper.map(ChargeItem));
     }
 
     @Override
@@ -44,12 +44,12 @@ public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
     }
 
     @Override
-    public Insurance getById(String id) {
+    public ChargeItem getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
     @Override
-    public List<Insurance> search(String search) {
+    public List<ChargeItem> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
 }

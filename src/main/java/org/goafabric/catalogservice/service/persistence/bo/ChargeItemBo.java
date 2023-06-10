@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.persistence.bo;
+package org.goafabric.catalogservice.service.persistence.bo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,14 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity @Table(name = "insurance")
-public class InsuranceBo {
-
+@Entity @Table(name = "chargeitem")
+public class ChargeItemBo {
     @org.springframework.data.annotation.Id
     @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String code;
     private String display;
-    private String reference;
+    private Double price;
 }

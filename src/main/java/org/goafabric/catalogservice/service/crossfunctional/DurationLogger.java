@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.crossfunctional;
+package org.goafabric.catalogservice.service.crossfunctional;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

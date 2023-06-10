@@ -1,7 +1,7 @@
-package org.goafabric.catalogservice.controller;
+package org.goafabric.catalogservice.service.controller;
 
-import org.goafabric.catalogservice.controller.dto.Diagnosis;
-import org.goafabric.catalogservice.logic.DiagnosisCatalogLogic;
+import org.goafabric.catalogservice.service.controller.dto.Diagnosis;
+import org.goafabric.catalogservice.service.logic.DiagnosisCatalogLogic;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
-package org.goafabric.catalogservice.persistence;
+package org.goafabric.catalogservice.service.persistence;
 
-import org.goafabric.catalogservice.persistence.bo.ChargeItemBo;
+import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

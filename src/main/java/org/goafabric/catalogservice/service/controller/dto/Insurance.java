@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.controller.dto;
+package org.goafabric.catalogservice.service.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Diagnosis {
+public class Insurance {
     private String code;
     private String display;
     private String reference;

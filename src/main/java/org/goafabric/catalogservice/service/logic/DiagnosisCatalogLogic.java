@@ -1,8 +1,8 @@
-package org.goafabric.catalogservice.logic;
+package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.controller.dto.ChargeItem;
-import org.goafabric.catalogservice.persistence.ChargeItemRepository;
-import org.goafabric.catalogservice.persistence.bo.ChargeItemBo;
+import org.goafabric.catalogservice.service.controller.dto.Diagnosis;
+import org.goafabric.catalogservice.service.persistence.DiagnosisRepository;
+import org.goafabric.catalogservice.service.persistence.bo.DiagnosisBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,25 +12,25 @@ import java.util.List;
 
 @Component
 @Transactional
-public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
+public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        ChargeItem map(ChargeItemBo o);
-        ChargeItemBo map(ChargeItem o);
-        List<ChargeItem> map(List<ChargeItemBo> l);
+        Diagnosis map(DiagnosisBo o);
+        DiagnosisBo map(Diagnosis o);
+        List<Diagnosis> map(List<DiagnosisBo> l);
     }
 
     private BoMapper mapper;
-    private ChargeItemRepository repository;
+    private DiagnosisRepository repository;
 
-    public ChargeItemCatalogLogic(BoMapper mapper, ChargeItemRepository repository) {
+    public DiagnosisCatalogLogic(BoMapper mapper, DiagnosisRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
 
     @Override
-    public void create(ChargeItem ChargeItem) {
-        repository.save(mapper.map(ChargeItem));
+    public void create(Diagnosis diagnosis) {
+        repository.save(mapper.map(diagnosis));
     }
 
     @Override
@@ -44,12 +44,12 @@ public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
     }
 
     @Override
-    public ChargeItem getById(String id) {
+    public Diagnosis getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
     @Override
-    public List<ChargeItem> search(String search) {
+    public List<Diagnosis> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
 }

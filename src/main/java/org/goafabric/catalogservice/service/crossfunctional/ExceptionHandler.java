@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.crossfunctional;
+package org.goafabric.catalogservice.service.crossfunctional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

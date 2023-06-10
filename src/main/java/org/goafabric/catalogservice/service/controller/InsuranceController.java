@@ -1,7 +1,7 @@
-package org.goafabric.catalogservice.controller;
+package org.goafabric.catalogservice.service.controller;
 
-import org.goafabric.catalogservice.controller.dto.Insurance;
-import org.goafabric.catalogservice.logic.InsuranceCatalogLogic;
+import org.goafabric.catalogservice.service.controller.dto.Insurance;
+import org.goafabric.catalogservice.service.logic.InsuranceCatalogLogic;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

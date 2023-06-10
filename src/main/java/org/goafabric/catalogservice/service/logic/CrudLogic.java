@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.logic;
+package org.goafabric.catalogservice.service.logic;
 
 import java.util.List;
 
