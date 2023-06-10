@@ -56,6 +56,8 @@ dependencies {
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
 
+	implementation("org.flywaydb:flyway-core")
+
 	//code generation
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
