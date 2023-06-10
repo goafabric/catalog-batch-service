@@ -65,7 +65,7 @@ public class CatalogProvisioning implements CommandLineRunner {
         loadFile("catalogs/icd10.csv").forEach(line -> diagnosisCatalogLogic.create(Diagnosis.builder()
                 .code(line.split(";")[0])
                 .display(line.split(";")[1])
-                .reference(line.split(";")[2]).build()
+                .shortname(line.split(";")[2]).build()
         ));
     }
 
@@ -73,7 +73,7 @@ public class CatalogProvisioning implements CommandLineRunner {
         loadFile("catalogs/insurance_pkv.csv").forEach(line -> insuranceCatalogLogic.create(Insurance.builder()
                 .code(line.split(";")[0])
                 .display(line.split(";")[1])
-                .reference(line.split(";")[2]).build()
+                .shortname(line.split(";")[2]).build()
         ));
     }
 

@@ -9,7 +9,7 @@ create table diagnosis
 
 	code varchar(255),
 	display varchar(255),
-	reference varchar(255),
+	shortname varchar(255),
 
     version bigint default 0
 );
@@ -23,7 +23,7 @@ create table insurance
 
 	code varchar(255),
 	display varchar(255),
-	reference varchar(255),
+	shortname varchar(255),
 
     version bigint default 0
 );

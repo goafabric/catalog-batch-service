@@ -21,5 +21,5 @@ public class DiagnosisBo {
 
     private String code;
     private String display;
-    private String reference;
+    private String shortname;
 }
