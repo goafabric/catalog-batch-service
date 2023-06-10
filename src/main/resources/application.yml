@@ -1,6 +1,6 @@
 #application
 server:
-  port: 50900
+  port: 50600
   tomcat.threads.max: 20
 
 #monitoring
