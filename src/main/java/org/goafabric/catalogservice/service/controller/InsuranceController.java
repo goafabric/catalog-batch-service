@@ -21,7 +21,7 @@ public class InsuranceController {
         return insuranceCatalogLogic.getById(id);
     }
 
-    @GetMapping
+    @GetMapping("/findByDisplay")
     List<Insurance> findByDisplay(@RequestParam("display") String display) {
         return insuranceCatalogLogic.search(display);
     }

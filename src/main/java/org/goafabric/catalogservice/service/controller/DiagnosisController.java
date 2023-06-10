@@ -21,7 +21,7 @@ public class DiagnosisController {
         return diagnosisCatalogLogic.getById(id);
     }
 
-    @GetMapping
+    @GetMapping("/findByDisplay")
     List<Diagnosis> findByDisplay(@RequestParam("display") String display) {
         return diagnosisCatalogLogic.search(display);
     }

@@ -21,7 +21,7 @@ public class ChargeItemController {
         return chargeItemCatalogLogic.getById(id);
     }
 
-    @GetMapping
+    @GetMapping("/findByDisplay")
     List<ChargeItem> findByDisplay(@RequestParam("display") String display) {
         return chargeItemCatalogLogic.search(display);
     }
