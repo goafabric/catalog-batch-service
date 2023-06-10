@@ -1,15 +1,14 @@
 package org.goafabric.catalogservice.service.persistence.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity @Table(name = "insurance")
+//@Entity @Table(name = "insurance")
+@Table(name = "insurance")
 public class InsuranceBo {
 
-    @org.springframework.data.annotation.Id
-    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
+    //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id
     public String id;
 
     public String code;

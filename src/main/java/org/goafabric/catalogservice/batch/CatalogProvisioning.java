@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @Slf4j
@@ -63,6 +64,7 @@ public class CatalogProvisioning implements CommandLineRunner {
 
     private void readDiagnosiss() {
         loadFile("catalogs/icd10.csv").forEach(line -> diagnosisCatalogLogic.create(Diagnosis.builder()
+                .id(UUID.randomUUID().toString())
                 .code(line.split(";")[0])
                 .display(line.split(";")[1])
                 .shortname(line.split(";")[2]).build()
@@ -71,6 +73,7 @@ public class CatalogProvisioning implements CommandLineRunner {
 
     private void readInsurances() {
         loadFile("catalogs/insurance_pkv.csv").forEach(line -> insuranceCatalogLogic.create(Insurance.builder()
+                .id(UUID.randomUUID().toString())
                 .code(line.split(";")[0])
                 .display(line.split(";")[1])
                 .shortname(line.split(";")[2]).build()
@@ -79,6 +82,7 @@ public class CatalogProvisioning implements CommandLineRunner {
 
     private void readChargeItems() {
         loadFile("catalogs/goae.csv").forEach(line -> chargeItemCatalogLogic.create(ChargeItem.builder()
+                .id(UUID.randomUUID().toString())
                 .code(line.split(";")[0])
                 .display(line.split(";")[1])
                 .price(Double.valueOf(line.split(";")[2])).build()

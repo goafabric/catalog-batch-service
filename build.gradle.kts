@@ -52,7 +52,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 
 	//persistence
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+	//implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
 

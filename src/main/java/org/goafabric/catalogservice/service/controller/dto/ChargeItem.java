@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ChargeItem {
+    private String id;
     private String code;
     private String display;
     private Double price;
