@@ -1,6 +1,9 @@
 package org.goafabric.catalogservice;
 
 import io.micrometer.observation.ObservationPredicate;
+import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
+import org.goafabric.catalogservice.service.persistence.bo.DiagnosisBo;
+import org.goafabric.catalogservice.service.persistence.bo.InsuranceBo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,8 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.relational.core.mapping.event.BeforeConvertCallback;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.UUID;
 
 
 /**
@@ -39,5 +45,29 @@ public class Application {
 
     @Bean
     ObservationPredicate disableHttpServerObservationsFromName() { return (name, context) -> !name.startsWith("spring.security."); }
+
+    @Bean
+    BeforeConvertCallback<ChargeItemBo> beforeConvertCallback1() {
+        return aggregate -> {
+            if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
+            return aggregate;
+        };
+    }
+
+    @Bean
+    BeforeConvertCallback<DiagnosisBo> beforeConvertCallback2() {
+        return aggregate -> {
+            if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
+            return aggregate;
+        };
+    }
+    @Bean
+    BeforeConvertCallback<InsuranceBo> beforeConvertCallback3() {
+        return aggregate -> {
+            if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
+            return aggregate;
+        };
+    }
+
 
 }

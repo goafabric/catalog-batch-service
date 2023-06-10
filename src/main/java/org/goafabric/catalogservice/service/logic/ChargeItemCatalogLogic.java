@@ -5,10 +5,13 @@ import org.goafabric.catalogservice.service.persistence.ChargeItemRepository;
 import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.relational.core.mapping.event.BeforeConvertCallback;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @Transactional
@@ -52,4 +55,5 @@ public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
     public List<ChargeItem> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
+
 }
