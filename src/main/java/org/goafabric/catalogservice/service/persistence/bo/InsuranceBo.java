@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 //@Entity @Table(name = "insurance")
-@Table(name = "catalog.insurance")
+@Table(name = "insurance", schema = "catalog")
 public class InsuranceBo {
 
     //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
