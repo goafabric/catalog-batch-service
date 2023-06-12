@@ -19,6 +19,7 @@ import java.util.List;
 
 @Component
 @Slf4j
+//TODO: this should be spring batch
 public class CatalogProvisioning implements CommandLineRunner {
     @Value("${database.provisioning.goals:}")
     String goals;
