@@ -58,6 +58,10 @@ services:
       logging.level.org.goafabric: "INFO"
       logging.level.org.springframework: "INFO"
 
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   postgres:
     container_name: ${_Values_root_name}-postgres
     image: postgres:15.3
