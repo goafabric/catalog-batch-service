@@ -73,6 +73,19 @@ public class Application {
         };
     }
 
+    /*
+    @Bean
+    NamingStrategy namingStrategy() {
+        return new NamingStrategy() {
+            @Override
+            public String getSchema() {
+                return "catalog";
+            }
+        };
+    }
+
+     */
+
     static class ApplicationRuntimeHints implements RuntimeHintsRegistrar {
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
