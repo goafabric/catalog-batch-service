@@ -15,14 +15,6 @@ management:
 
 spring.cloud.consul.config.enabled: "false"
 
-#jpa
-spring.jpa.hibernate.ddl-auto: "none"
-spring.datasource.url: jdbc:h2:mem:catalog;MODE=POSTGRESQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
-#spring.datasource.url: jdbc:postgresql://localhost:5432/postgres
-spring.datasource.username: postgres
-spring.datasource.password: postgres
-
-
 #openapi
 springdoc.swagger-ui.path: /swagger-ui/index.html
 springdoc.enable-native-support: "true"
@@ -42,11 +34,17 @@ security.authentication.enabled: true
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
-#oidc
-spring.security.oauth2.client.registration.keycloak.scope: openid
-spring.security.oauth2.client.registration.keycloak.client-id: oauth2-proxy
-spring.security.oauth2.client.registration.keycloak.clientSecret: none
-spring.security.oauth2.client.provider.keycloak.issuerUri: http://127.0.0.1:30200 #http://localhost:30200/oidc/realms/tenant-0
+#persistence
+spring.jpa.hibernate.ddl-auto: "none"
+#spring.datasource.url: jdbc:h2:mem:catalog;MODE=POSTGRESQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+spring.datasource.url: jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username: postgres
+spring.datasource.password: postgres
+
+spring:
+  flyway:
+    schemas: catalog
+    default-schema: catalog
 
 #logging
 logging.level.root: "WARN"
