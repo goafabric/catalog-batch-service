@@ -1,9 +1,9 @@
 package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.service.controller.dto.Insurance;
+import org.goafabric.catalogservice.service.controller.vo.Insurance;
 import org.goafabric.catalogservice.service.crossfunctional.DurationLog;
-import org.goafabric.catalogservice.service.persistence.InsuranceRepository;
-import org.goafabric.catalogservice.service.persistence.bo.InsuranceBo;
+import org.goafabric.catalogservice.service.repository.InsuranceRepository;
+import org.goafabric.catalogservice.service.repository.entity.InsuranceEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -17,9 +17,9 @@ import java.util.List;
 public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        Insurance map(InsuranceBo o);
-        InsuranceBo map(Insurance o);
-        List<Insurance> map(List<InsuranceBo> l);
+        Insurance map(InsuranceEo o);
+        InsuranceEo map(Insurance o);
+        List<Insurance> map(List<InsuranceEo> l);
     }
 
     private BoMapper mapper;

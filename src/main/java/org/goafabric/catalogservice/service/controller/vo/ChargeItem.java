@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.service.controller.dto;
+package org.goafabric.catalogservice.service.controller.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

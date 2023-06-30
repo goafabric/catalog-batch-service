@@ -1,9 +1,9 @@
 package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.service.controller.dto.Diagnosis;
+import org.goafabric.catalogservice.service.controller.vo.Diagnosis;
 import org.goafabric.catalogservice.service.crossfunctional.DurationLog;
-import org.goafabric.catalogservice.service.persistence.DiagnosisRepository;
-import org.goafabric.catalogservice.service.persistence.bo.DiagnosisBo;
+import org.goafabric.catalogservice.service.repository.DiagnosisRepository;
+import org.goafabric.catalogservice.service.repository.entity.DiagnosisEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -17,9 +17,9 @@ import java.util.List;
 public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        Diagnosis map(DiagnosisBo o);
-        DiagnosisBo map(Diagnosis o);
-        List<Diagnosis> map(List<DiagnosisBo> l);
+        Diagnosis map(DiagnosisEo o);
+        DiagnosisEo map(Diagnosis o);
+        List<Diagnosis> map(List<DiagnosisEo> l);
     }
 
     private BoMapper mapper;

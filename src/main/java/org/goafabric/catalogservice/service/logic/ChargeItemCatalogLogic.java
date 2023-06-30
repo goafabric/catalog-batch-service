@@ -1,9 +1,9 @@
 package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.service.controller.dto.ChargeItem;
+import org.goafabric.catalogservice.service.controller.vo.ChargeItem;
 import org.goafabric.catalogservice.service.crossfunctional.DurationLog;
-import org.goafabric.catalogservice.service.persistence.ChargeItemRepository;
-import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
+import org.goafabric.catalogservice.service.repository.ChargeItemRepository;
+import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -16,9 +16,9 @@ import java.util.List;
 public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        ChargeItem map(ChargeItemBo o);
-        ChargeItemBo map(ChargeItem o);
-        List<ChargeItem> map(List<ChargeItemBo> l);
+        ChargeItem map(ChargeItemEo o);
+        ChargeItemEo map(ChargeItem o);
+        List<ChargeItem> map(List<ChargeItemEo> l);
     }
 
     private BoMapper mapper;

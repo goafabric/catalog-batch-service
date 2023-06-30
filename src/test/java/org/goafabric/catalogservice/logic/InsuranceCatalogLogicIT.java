@@ -1,6 +1,6 @@
 package org.goafabric.catalogservice.logic;
 
-import org.goafabric.catalogservice.service.controller.dto.Insurance;
+import org.goafabric.catalogservice.service.controller.vo.Insurance;
 import org.goafabric.catalogservice.service.logic.CrudLogic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

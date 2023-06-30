@@ -1,11 +1,11 @@
-package org.goafabric.catalogservice.service.persistence.bo;
+package org.goafabric.catalogservice.service.repository.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 //@Entity @Table(name = "chargeitem")
 @Table(name = "chargeitem", schema = "catalog")
-public class ChargeItemBo {
+public class ChargeItemEo {
     //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     public String id;

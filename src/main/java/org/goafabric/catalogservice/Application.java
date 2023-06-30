@@ -1,9 +1,9 @@
 package org.goafabric.catalogservice;
 
 import io.micrometer.observation.ObservationPredicate;
-import org.goafabric.catalogservice.service.persistence.bo.ChargeItemBo;
-import org.goafabric.catalogservice.service.persistence.bo.DiagnosisBo;
-import org.goafabric.catalogservice.service.persistence.bo.InsuranceBo;
+import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
+import org.goafabric.catalogservice.service.repository.entity.DiagnosisEo;
+import org.goafabric.catalogservice.service.repository.entity.InsuranceEo;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,7 +51,7 @@ public class Application {
     ObservationPredicate disableHttpServerObservationsFromName() { return (name, context) -> !name.startsWith("spring.security."); }
 
     @Bean
-    BeforeConvertCallback<ChargeItemBo> beforeConvertCallback1() {
+    BeforeConvertCallback<ChargeItemEo> beforeConvertCallback1() {
         return aggregate -> {
             if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
             return aggregate;
@@ -59,14 +59,14 @@ public class Application {
     }
 
     @Bean
-    BeforeConvertCallback<DiagnosisBo> beforeConvertCallback2() {
+    BeforeConvertCallback<DiagnosisEo> beforeConvertCallback2() {
         return aggregate -> {
             if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
             return aggregate;
         };
     }
     @Bean
-    BeforeConvertCallback<InsuranceBo> beforeConvertCallback3() {
+    BeforeConvertCallback<InsuranceEo> beforeConvertCallback3() {
         return aggregate -> {
             if (aggregate.id == null) aggregate.id = UUID.randomUUID().toString();
             return aggregate;

@@ -1,9 +1,9 @@
 package org.goafabric.catalogservice.batch;
 
 import lombok.extern.slf4j.Slf4j;
-import org.goafabric.catalogservice.service.controller.dto.ChargeItem;
-import org.goafabric.catalogservice.service.controller.dto.Diagnosis;
-import org.goafabric.catalogservice.service.controller.dto.Insurance;
+import org.goafabric.catalogservice.service.controller.vo.ChargeItem;
+import org.goafabric.catalogservice.service.controller.vo.Diagnosis;
+import org.goafabric.catalogservice.service.controller.vo.Insurance;
 import org.goafabric.catalogservice.service.logic.CrudLogic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
