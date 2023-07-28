@@ -1,3 +1,4 @@
+/*
 package org.goafabric.catalogservice.batch;
 
 import lombok.extern.slf4j.Slf4j;
@@ -86,18 +87,7 @@ public class CatalogProvisioning implements CommandLineRunner {
         ));
     }
 
-    /*
-    @Value("${demo-data.size}") Integer demoDataSize;
-    private void readInsurancesFaked() {
-        Faker faker = new Faker();
-        IntStream.range(0, 1000).forEach(line -> insuranceCatalogLogic.create(Insurance.builder()
-                .code(String.valueOf(System.currentTimeMillis()))
-                .display(faker.address().streetName())
-                .reference(faker.address().city()).build()
-        ));
-    }
 
-     */
 
     private static List<String> loadFile(String fileName)  {
         try {
@@ -107,7 +97,6 @@ public class CatalogProvisioning implements CommandLineRunner {
             throw new RuntimeException(e);
         }
     }
-
-
-
 }
+
+ */
