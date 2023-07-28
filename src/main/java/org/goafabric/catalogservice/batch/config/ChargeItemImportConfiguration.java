@@ -1,8 +1,8 @@
 package org.goafabric.catalogservice.batch.config;
 
 import org.goafabric.catalogservice.batch.JobCompletionListener;
-import org.goafabric.catalogservice.service.repository.InsuranceRepository;
-import org.goafabric.catalogservice.service.repository.entity.InsuranceEo;
+import org.goafabric.catalogservice.service.repository.ChargeItemRepository;
+import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -19,45 +19,45 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-public class InsuranceImportConfiguration {
+public class ChargeItemImportConfiguration {
 
     @Bean
-    public Job insuranceJob(Step insuranceStep, JobCompletionListener listener, JobRepository jobRepository) {
-        return new JobBuilder("insuranceJob", jobRepository)
+    public Job chargeItemJob(Step chargeItemStep, JobCompletionListener listener, JobRepository jobRepository) {
+        return new JobBuilder("chargeItemJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .listener(listener).flow(insuranceStep).end()
+                .listener(listener).flow(chargeItemStep).end()
                 .build();
     }
 
     @Bean
-    public Step insuranceStep(ItemReader<InsuranceEo> diagnosisItemReader,
-                           ItemWriter<InsuranceEo> InsuranceEoItemWriter,
+    public Step chargeItemStep(ItemReader<ChargeItemEo> diagnosisItemReader,
+                           ItemWriter<ChargeItemEo> ChargeItemEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
-        return new StepBuilder("insuranceStep", jobRepository)
-                .<InsuranceEo, InsuranceEo>chunk(2, ptm)
+        return new StepBuilder("chargeItemStep", jobRepository)
+                .<ChargeItemEo, ChargeItemEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
-                .writer(InsuranceEoItemWriter)
+                .writer(ChargeItemEoItemWriter)
                 .build();
     }
 
     @Bean
-    public ItemReader<InsuranceEo> insuranceItemReader() {
-        return new FlatFileItemReaderBuilder<InsuranceEo>()
-                .name("insuranceItemReader")
-                .resource(new ClassPathResource("catalogs/insurance_pkv.csv"))
+    public ItemReader<ChargeItemEo> chargeItemItemReader() {
+        return new FlatFileItemReaderBuilder<ChargeItemEo>()
+                .name("InsuranceItemReader")
+                .resource(new ClassPathResource("catalogs/chargeItem_pkv.csv"))
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
-                //.fieldSetMapper(new RecordFieldSetMapper(InsuranceEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<InsuranceEo>() {{
-                    setTargetType(InsuranceEo.class);
+                //.fieldSetMapper(new RecordFieldSetMapper(ChargeItemEo.class))
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<ChargeItemEo>() {{
+                    setTargetType(ChargeItemEo.class);
                 }})
                 .build();
 
     }
     
     @Bean
-    public ItemWriter<InsuranceEo> insuranceItemWriter(InsuranceRepository repository) {
+    public ItemWriter<ChargeItemEo> chargeItemItemWriter(ChargeItemRepository repository) {
         return chunk -> chunk.getItems().forEach(repository::save);
     }
 
