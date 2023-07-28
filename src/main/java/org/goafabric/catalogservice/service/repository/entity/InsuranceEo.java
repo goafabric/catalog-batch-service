@@ -14,4 +14,20 @@ public class InsuranceEo {
     public String code;
     public String display;
     public String shortname;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
+    }
 }

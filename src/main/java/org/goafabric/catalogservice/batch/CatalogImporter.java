@@ -3,12 +3,15 @@ package org.goafabric.catalogservice.batch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionException;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CatalogImporter implements CommandLineRunner {
@@ -18,7 +21,7 @@ public class CatalogImporter implements CommandLineRunner {
     private JobLauncher jobLauncher;
 
     @Autowired
-    private Job diagnosisJob;
+    private List<Job> jobs;
 
     @Value("${database.provisioning.goals:}")
     String goals;
@@ -29,7 +32,13 @@ public class CatalogImporter implements CommandLineRunner {
         if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { return; }
 
         //if (goals.contains("-import-catalog-data")) {
-        jobLauncher.run(diagnosisJob, new JobParameters());
+        jobs.forEach(job -> {
+            try {
+                jobLauncher.run(job, new JobParameters());
+            } catch (JobExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
 
         /*
