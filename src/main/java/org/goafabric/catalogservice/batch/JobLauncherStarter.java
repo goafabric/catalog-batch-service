@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class JobLauncher implements CommandLineRunner {
+public class JobLauncherStarter implements CommandLineRunner {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
