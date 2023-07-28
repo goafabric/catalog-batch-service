@@ -9,7 +9,6 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
@@ -32,14 +31,12 @@ public class DiagnosisImportConfiguration {
 
     @Bean(name = "diagnosisStep")
     public Step diagnosisStep(ItemReader<DiagnosisEo> diagnosisItemReader,
-                           //ItemProcessor<DiagnosisEo, DiagnosisEo> diagnosisItemProcessor,
                            ItemWriter<DiagnosisEo> DiagnosisEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
         return new StepBuilder("DiagnosisStep", jobRepository)
                 .<DiagnosisEo, DiagnosisEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
-                //.processor(DiagnosisEoItemProcessor)
                 .writer(DiagnosisEoItemWriter)
                 .build();
     }
@@ -61,21 +58,7 @@ public class DiagnosisImportConfiguration {
     
     @Bean
     public ItemWriter<DiagnosisEo> diagnosisItemWriter(DiagnosisRepository diagnosisRepository) {
-        return new ItemWriter<DiagnosisEo>() {
-            @Override
-            public void write(Chunk<? extends DiagnosisEo> chunk) throws Exception {
-                chunk.getItems().stream().forEach(dia -> diagnosisRepository.save(dia));    
-            }
-        };
+        return chunk -> chunk.getItems().forEach(diagnosisRepository::save);
     }
 
-
-    /*
-    @Bean
-    public ItemWriter<DiagnosisEo> DiagnosisEoItemWriter(DataSource dataSource) {
-        final String sql = "INSERT INTO masterdata.DiagnosisEo_catalog (id, DiagnosisEo_name, price) VALUES (:id, :DiagnosisEoName, :price)";
-        return new DiagnosisEoItemWriter(dataSource, sql);
-    }
-
-     */
 }
