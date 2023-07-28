@@ -14,20 +14,14 @@ management:
         exposure:
           include: "health,prometheus,heapdump"
 
-spring.cloud.consul.config.enabled: "false"
-
 #openapi
 springdoc.swagger-ui.path: /swagger-ui/index.html
-springdoc.enable-native-support: "true"
 
 #jaeger / zipkin
 spring.application.name: catalog-service
 management.tracing.sampling.probability: "1.0"
 logging.level.io.opentelemetry: "OFF"
 management.otlp.tracing.endpoint: "http://localhost:4318/v1/traces"
-
-logging.level.zipkin2.reporter: "ERROR"
-logging.level.io.opentelemetry.exporter: "ERROR"
 
 #security
 security.authentication.enabled: true
@@ -48,6 +42,14 @@ spring:
   flyway:
     schemas: catalog
     default-schema: catalog
+
+  batch:
+    job:
+      enabled: false
+
+    jdbc:
+      initialize-schema: never
+      table-prefix: catalog.BATCH_
 
 #logging
 logging.level.root: "WARN"
