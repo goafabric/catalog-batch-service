@@ -1,6 +1,7 @@
 package org.goafabric.catalogservice.service.repository.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
 //@Entity @Table(name = "diagnosis")
@@ -13,6 +14,10 @@ public class DiagnosisEo {
     public String code;
     public String display;
     public String shortname;
+
+    @Version //optimistic locking
+    public Long version;
+
 
     public void setId(String id) {
         this.id = id;

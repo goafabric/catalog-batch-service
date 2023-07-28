@@ -1,6 +1,7 @@
 package org.goafabric.catalogservice.service.repository.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
 //@Entity @Table(name = "chargeitem")
@@ -13,6 +14,10 @@ public class ChargeItemEo {
     public String code;
     public String display;
     public Double price;
+
+    @Version //optimistic locking
+    public Long version;
+
 
     public void setCode(String code) {
         this.code = code;

@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.UUID;
+
 @Configuration
 public class DiagnosisImportConfiguration {
 
@@ -57,8 +59,11 @@ public class DiagnosisImportConfiguration {
     }
     
     @Bean
-    public ItemWriter<DiagnosisEo> diagnosisItemWriter(DiagnosisRepository diagnosisRepository) {
-        return chunk -> chunk.getItems().forEach(diagnosisRepository::save);
+    public ItemWriter<DiagnosisEo> diagnosisItemWriter(DiagnosisRepository repository) {
+        return chunks -> chunks.getItems().forEach(chunk -> {
+            chunk.id = UUID.randomUUID().toString();
+            repository.save(chunk);
+        });
     }
 
 }

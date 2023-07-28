@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.UUID;
+
 @Configuration
 public class ChargeItemImportConfiguration {
 
@@ -58,7 +60,10 @@ public class ChargeItemImportConfiguration {
     
     @Bean
     public ItemWriter<ChargeItemEo> chargeItemItemWriter(ChargeItemRepository repository) {
-        return chunk -> chunk.getItems().forEach(repository::save);
+        return chunks -> chunks.getItems().forEach(chunk -> {
+            chunk.id = UUID.randomUUID().toString();
+            repository.save(chunk);
+        });
     }
 
 }
