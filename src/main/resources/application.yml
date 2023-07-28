@@ -51,6 +51,8 @@ spring:
       initialize-schema: never
       table-prefix: catalog.BATCH_
 
+database.provisioning.goals: "-import-catalog-data"
+
 #logging
 logging.level.root: "WARN"
 logging.level.org.springframework: "INFO"

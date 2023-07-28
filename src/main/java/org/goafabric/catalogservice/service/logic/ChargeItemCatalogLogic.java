@@ -1,17 +1,16 @@
 package org.goafabric.catalogservice.service.logic;
 
 import org.goafabric.catalogservice.service.controller.vo.ChargeItem;
-import org.goafabric.catalogservice.service.crossfunctional.DurationLog;
 import org.goafabric.catalogservice.service.repository.ChargeItemRepository;
 import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Component
-@DurationLog
 @Transactional
 public class ChargeItemCatalogLogic implements CrudLogic<ChargeItem> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

@@ -45,9 +45,9 @@ public class ChargeItemImportConfiguration {
     public ItemReader<ChargeItemEo> chargeItemItemReader() {
         return new FlatFileItemReaderBuilder<ChargeItemEo>()
                 .name("InsuranceItemReader")
-                .resource(new ClassPathResource("catalogs/chargeItem_pkv.csv"))
+                .resource(new ClassPathResource("catalogs/goae.csv"))
                 .delimited().delimiter(";")
-                .names(new String[]{"code", "display", "shortname"})
+                .names(new String[]{"code", "display", "orice"})
                 //.fieldSetMapper(new RecordFieldSetMapper(ChargeItemEo.class))
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<ChargeItemEo>() {{
                     setTargetType(ChargeItemEo.class);

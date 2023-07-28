@@ -13,4 +13,16 @@ public class ChargeItemEo {
     public String code;
     public String display;
     public Double price;
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }

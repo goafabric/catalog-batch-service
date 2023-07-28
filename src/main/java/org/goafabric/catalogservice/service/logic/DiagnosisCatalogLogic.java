@@ -1,7 +1,6 @@
 package org.goafabric.catalogservice.service.logic;
 
 import org.goafabric.catalogservice.service.controller.vo.Diagnosis;
-import org.goafabric.catalogservice.service.crossfunctional.DurationLog;
 import org.goafabric.catalogservice.service.repository.DiagnosisRepository;
 import org.goafabric.catalogservice.service.repository.entity.DiagnosisEo;
 import org.mapstruct.Mapper;
@@ -12,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
-@DurationLog
 @Transactional
 public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
