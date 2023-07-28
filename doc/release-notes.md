@@ -1,4 +1,4 @@
-# 1.0.1
+# 1.0.2
 - upgrade to boot 3.1.2 + otel
 - spring batch implementation
 
