@@ -29,7 +29,7 @@ public class ConditionLogic {
     }
 
     public Condition getById(String id) {
-        return mapper.map(repository.findById(id).get());
+        return mapper.map(repository.getById(id));
     }
 
     public List<Condition> search(String search) {
