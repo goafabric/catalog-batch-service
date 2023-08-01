@@ -1,3 +1,5 @@
+# 1.0.4
+
 # 1.0.3
 - renamed Diagnosis to Condition
 - lombok removed
