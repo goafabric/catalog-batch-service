@@ -1,6 +1,7 @@
 package org.goafabric.catalogservice.service.logic;
 
 import org.goafabric.catalogservice.service.controller.vo.Condition;
+import org.goafabric.catalogservice.service.logic.mapper.ConditionMapper;
 import org.goafabric.catalogservice.service.repository.ConditionRepository;
 import org.goafabric.catalogservice.service.repository.entity.ConditionEo;
 import org.mapstruct.Mapper;
@@ -20,10 +21,10 @@ public class ConditioLogic implements CrudLogic<Condition> {
         List<Condition> map(List<ConditionEo> l);
     }
 
-    private BoMapper mapper;
+    private ConditionMapper mapper;
     private ConditionRepository repository;
 
-    public ConditioLogic(BoMapper mapper, ConditionRepository repository) {
+    public ConditioLogic(ConditionMapper mapper, ConditionRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
