@@ -29,7 +29,7 @@ public class ChargeItemLogic {
     }
 
     public ChargeItem getById(String id) {
-        return mapper.map(repository.getById(id));
+        return mapper.map(repository.findById(id).get());
     }
 
     public List<ChargeItem> search(String search) {
