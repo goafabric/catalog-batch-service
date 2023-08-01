@@ -62,9 +62,6 @@ dependencies {
 	implementation("org.flywaydb:flyway-core")
 
 	//code generation
-	compileOnly("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
-
 	implementation("org.mapstruct:mapstruct")
 	annotationProcessor("org.mapstruct:mapstruct-processor")
 

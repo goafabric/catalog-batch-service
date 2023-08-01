@@ -4,8 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
-//@Entity @Table(name = "diagnosis")
-@Table(name = "diagnosis", schema = "catalog")
+//@Entity @Table(name = "condition")
+@Table(name = "condition", schema = "catalog")
 public class ConditionEo {
     //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     @Id
@@ -17,7 +17,6 @@ public class ConditionEo {
 
     @Version //optimistic locking
     public Long version;
-
 
     public void setId(String id) {
         this.id = id;

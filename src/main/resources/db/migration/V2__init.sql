@@ -1,10 +1,10 @@
 drop table if exists person;
 
 
-create table diagnosis
+create table condition
 (
 	id varchar(36) not null
-		constraint pk_diagnosis
+		constraint pk_condition
 			primary key,
 
 	code varchar(255),
