@@ -1,6 +1,6 @@
 package org.goafabric.catalogservice.logic;
 
-import org.goafabric.catalogservice.service.logic.ConditionLogic;
+import org.goafabric.catalogservice.service.logic.ChargeItemLogic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,12 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ConditionCatalogLogicIT {
+public class ChargeItemLogicIT {
+
     @Autowired
-    private ConditionLogic diagnosisCatalogLogic;
+    private ChargeItemLogic insuranceCatalogLogic;
 
     @Test
     void search() {
-        assertThat(diagnosisCatalogLogic.search("")).isNotNull().isNotEmpty();
+        assertThat(insuranceCatalogLogic.search("")).isNotNull().isNotEmpty();
     }
 }

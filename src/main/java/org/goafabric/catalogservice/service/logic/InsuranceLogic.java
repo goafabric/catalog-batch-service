@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class InsuranceLogic implements CrudLogic<Insurance> {
+public class InsuranceLogic {
 
     private InsuranceMapper mapper;
     private InsuranceRepository repository;
@@ -20,27 +20,18 @@ public class InsuranceLogic implements CrudLogic<Insurance> {
         this.repository = repository;
     }
 
-    @Override
     public void create(Insurance Insurance) {
         repository.save(mapper.map(Insurance));
     }
 
-    @Override
     public void delete(String id) {
         repository.deleteById(id);
     }
 
-    @Override
-    public void deleteAll() {
-
-    }
-
-    @Override
     public Insurance getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
-    @Override
     public List<Insurance> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }

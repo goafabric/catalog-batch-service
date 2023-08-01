@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public class ChargeItemLogic implements CrudLogic<ChargeItem> {
+public class ChargeItemLogic {
 
     private ChargeItemMapper mapper;
     private ChargeItemRepository repository;
@@ -20,27 +20,18 @@ public class ChargeItemLogic implements CrudLogic<ChargeItem> {
         this.repository = repository;
     }
 
-    @Override
     public void create(ChargeItem ChargeItem) {
         repository.save(mapper.map(ChargeItem));
     }
 
-    @Override
     public void delete(String id) {
         repository.deleteById(id);
     }
 
-    @Override
-    public void deleteAll() {
-
-    }
-
-    @Override
     public ChargeItem getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
-    @Override
     public List<ChargeItem> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
