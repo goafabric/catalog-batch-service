@@ -51,7 +51,7 @@ public class InsuranceImportConfiguration {
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
                 //.fieldSetMapper(new RecordFieldSetMapper(InsuranceEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<InsuranceEo>() {{
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
                     setTargetType(InsuranceEo.class);
                 }})
                 .build();
@@ -60,9 +60,9 @@ public class InsuranceImportConfiguration {
     
     @Bean
     public ItemWriter<InsuranceEo> insuranceItemWriter(InsuranceRepository repository) {
-        return chunks -> chunks.getItems().forEach(chunk -> {
-            chunk.id = UUID.randomUUID().toString();
-            repository.save(chunk);
+        return chunks -> chunks.getItems().forEach(insuranceEo -> {
+            insuranceEo.id = UUID.randomUUID().toString();
+            repository.save(insuranceEo);
         });
     }
 

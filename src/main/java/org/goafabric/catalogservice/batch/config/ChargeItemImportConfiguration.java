@@ -60,9 +60,9 @@ public class ChargeItemImportConfiguration {
     
     @Bean
     public ItemWriter<ChargeItemEo> chargeItemItemWriter(ChargeItemRepository repository) {
-        return chunks -> chunks.getItems().forEach(chunk -> {
-            chunk.id = UUID.randomUUID().toString();
-            repository.save(chunk);
+        return chunks -> chunks.getItems().forEach(chargeItemEo -> {
+            chargeItemEo.id = UUID.randomUUID().toString();
+            repository.save(chargeItemEo);
         });
     }
 

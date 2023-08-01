@@ -51,7 +51,7 @@ public class ConditionImportConfiguration {
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
                 //.fieldSetMapper(new RecordFieldSetMapper(ConditionEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<ConditionEo>() {{
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
                     setTargetType(ConditionEo.class);
                 }})
                 .build();
@@ -60,9 +60,9 @@ public class ConditionImportConfiguration {
     
     @Bean
     public ItemWriter<ConditionEo> conditionItemWriter(ConditionRepository repository) {
-        return chunks -> chunks.getItems().forEach(chunk -> {
-            chunk.id = UUID.randomUUID().toString();
-            repository.save(chunk);
+        return chunks -> chunks.getItems().forEach(conditionEo -> {
+            conditionEo.id = UUID.randomUUID().toString();
+            repository.save(conditionEo);
         });
     }
 
