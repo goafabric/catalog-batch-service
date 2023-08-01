@@ -1,8 +1,8 @@
 package org.goafabric.catalogservice.batch.config;
 
 import org.goafabric.catalogservice.batch.JobCompletionListener;
-import org.goafabric.catalogservice.service.repository.DiagnosisRepository;
-import org.goafabric.catalogservice.service.repository.entity.DiagnosisEo;
+import org.goafabric.catalogservice.service.repository.ConditionRepository;
+import org.goafabric.catalogservice.service.repository.entity.ConditionEo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -32,34 +32,34 @@ public class DiagnosisImportConfiguration {
     }
 
     @Bean(name = "diagnosisStep")
-    public Step diagnosisStep(ItemReader<DiagnosisEo> diagnosisItemReader,
-                           ItemWriter<DiagnosisEo> DiagnosisEoItemWriter,
+    public Step diagnosisStep(ItemReader<ConditionEo> diagnosisItemReader,
+                           ItemWriter<ConditionEo> DiagnosisEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
         return new StepBuilder("diagnosisStep", jobRepository)
-                .<DiagnosisEo, DiagnosisEo>chunk(2, ptm)
+                .<ConditionEo, ConditionEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
                 .writer(DiagnosisEoItemWriter)
                 .build();
     }
 
     @Bean
-    public ItemReader<DiagnosisEo> diagnosisItemReader() {
-        return new FlatFileItemReaderBuilder<DiagnosisEo>()
+    public ItemReader<ConditionEo> diagnosisItemReader() {
+        return new FlatFileItemReaderBuilder<ConditionEo>()
                 .name("diagnosisItemReader")
                 .resource(new ClassPathResource("catalogs/icd10.csv"))
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
                 //.fieldSetMapper(new RecordFieldSetMapper(DiagnosisEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<DiagnosisEo>() {{
-                    setTargetType(DiagnosisEo.class);
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<ConditionEo>() {{
+                    setTargetType(ConditionEo.class);
                 }})
                 .build();
 
     }
     
     @Bean
-    public ItemWriter<DiagnosisEo> diagnosisItemWriter(DiagnosisRepository repository) {
+    public ItemWriter<ConditionEo> diagnosisItemWriter(ConditionRepository repository) {
         return chunks -> chunks.getItems().forEach(chunk -> {
             chunk.id = UUID.randomUUID().toString();
             repository.save(chunk);

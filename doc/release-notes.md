@@ -1,4 +1,5 @@
 # 1.0.3
+- renamed Diagnosis to Condition
 
 # 1.0.2
 - upgrade to boot 3.1.2 + otel

@@ -6,7 +6,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 //@Entity @Table(name = "diagnosis")
 @Table(name = "diagnosis", schema = "catalog")
-public class DiagnosisEo {
+public class ConditionEo {
     //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     public String id;

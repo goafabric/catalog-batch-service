@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Diagnosis {
+public class Condition {
     private String id;
 
     private String code;

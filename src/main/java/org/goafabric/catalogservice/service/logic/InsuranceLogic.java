@@ -1,8 +1,8 @@
 package org.goafabric.catalogservice.service.logic;
 
-import org.goafabric.catalogservice.service.controller.vo.Diagnosis;
-import org.goafabric.catalogservice.service.repository.DiagnosisRepository;
-import org.goafabric.catalogservice.service.repository.entity.DiagnosisEo;
+import org.goafabric.catalogservice.service.controller.vo.Insurance;
+import org.goafabric.catalogservice.service.repository.InsuranceRepository;
+import org.goafabric.catalogservice.service.repository.entity.InsuranceEo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,25 +12,25 @@ import java.util.List;
 
 @Component
 @Transactional
-public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
+public class InsuranceLogic implements CrudLogic<Insurance> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        Diagnosis map(DiagnosisEo o);
-        DiagnosisEo map(Diagnosis o);
-        List<Diagnosis> map(List<DiagnosisEo> l);
+        Insurance map(InsuranceEo o);
+        InsuranceEo map(Insurance o);
+        List<Insurance> map(List<InsuranceEo> l);
     }
 
     private BoMapper mapper;
-    private DiagnosisRepository repository;
+    private InsuranceRepository repository;
 
-    public DiagnosisCatalogLogic(BoMapper mapper, DiagnosisRepository repository) {
+    public InsuranceLogic(BoMapper mapper, InsuranceRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
 
     @Override
-    public void create(Diagnosis diagnosis) {
-        repository.save(mapper.map(diagnosis));
+    public void create(Insurance Insurance) {
+        repository.save(mapper.map(Insurance));
     }
 
     @Override
@@ -44,12 +44,12 @@ public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     }
 
     @Override
-    public Diagnosis getById(String id) {
+    public Insurance getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
     @Override
-    public List<Diagnosis> search(String search) {
+    public List<Insurance> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
 }
