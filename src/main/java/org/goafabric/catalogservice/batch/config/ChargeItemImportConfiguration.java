@@ -51,9 +51,7 @@ public class ChargeItemImportConfiguration {
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "orice"})
                 //.fieldSetMapper(new RecordFieldSetMapper(ChargeItemEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<ChargeItemEo>() {{
-                    setTargetType(ChargeItemEo.class);
-                }})
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(ChargeItemEo.class); }})
                 .build();
 
     }

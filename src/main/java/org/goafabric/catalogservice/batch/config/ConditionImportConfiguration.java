@@ -51,9 +51,7 @@ public class ConditionImportConfiguration {
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
                 //.fieldSetMapper(new RecordFieldSetMapper(ConditionEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
-                    setTargetType(ConditionEo.class);
-                }})
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(ConditionEo.class); }})
                 .build();
 
     }

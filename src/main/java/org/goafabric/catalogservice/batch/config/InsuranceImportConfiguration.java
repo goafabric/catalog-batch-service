@@ -51,9 +51,7 @@ public class InsuranceImportConfiguration {
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
                 //.fieldSetMapper(new RecordFieldSetMapper(InsuranceEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
-                    setTargetType(InsuranceEo.class);
-                }})
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(InsuranceEo.class); }})
                 .build();
 
     }
