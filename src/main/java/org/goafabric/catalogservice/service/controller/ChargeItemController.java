@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "chargeitems", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ChargeItemController {
-    private final ChargeItemLogic chargeItemLogic;
+    private final ChargeItemLogic logic;
 
-    public ChargeItemController(ChargeItemLogic ChargeItemLogic) {
-        this.chargeItemLogic = ChargeItemLogic;
+    public ChargeItemController(ChargeItemLogic logic) {
+        this.logic = logic;
     }
 
     @GetMapping("/{id}")
     public ChargeItem getById(@PathVariable String id) {
-        return chargeItemLogic.getById(id);
+        return logic.getById(id);
     }
 
     @GetMapping("/findByDisplay")
-    List<ChargeItem> findByDisplay(@RequestParam("display") String display) {
-        return chargeItemLogic.search(display);
+    public List<ChargeItem> findByDisplay(@RequestParam("display") String display) {
+        return logic.search(display);
     }
 }

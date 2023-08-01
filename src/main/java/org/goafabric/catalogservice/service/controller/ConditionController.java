@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "diagnosis", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ConditionController {
-    private final ConditionLogic conditionLogic;
+    private final ConditionLogic logic;
 
-    public ConditionController(ConditionLogic ConditionLogic) {
-        this.conditionLogic = ConditionLogic;
+    public ConditionController(ConditionLogic logic) {
+        this.logic = logic;
     }
 
     @GetMapping("/{id}")
     public Condition getById(@PathVariable String id) {
-        return conditionLogic.getById(id);
+        return logic.getById(id);
     }
 
     @GetMapping("/findByDisplay")
-    List<Condition> findByDisplay(@RequestParam("display") String display) {
-        return conditionLogic.search(display);
+    public List<Condition> findByDisplay(@RequestParam("display") String display) {
+        return logic.search(display);
     }
 }

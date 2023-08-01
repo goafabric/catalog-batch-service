@@ -21,36 +21,36 @@ import org.springframework.transaction.PlatformTransactionManager;
 import java.util.UUID;
 
 @Configuration
-public class DiagnosisImportConfiguration {
+public class ConditionImportConfiguration {
 
     @Bean
-    public Job DiagnosisEoJob(Step diagnosisStep, JobCompletionListener listener, JobRepository jobRepository) {
-        return new JobBuilder("diagnosisJob", jobRepository)
+    public Job ConditionEoJob(Step conditionStep, JobCompletionListener listener, JobRepository jobRepository) {
+        return new JobBuilder("conditionJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .listener(listener).flow(diagnosisStep).end()
+                .listener(listener).flow(conditionStep).end()
                 .build();
     }
 
-    @Bean(name = "diagnosisStep")
-    public Step diagnosisStep(ItemReader<ConditionEo> diagnosisItemReader,
-                           ItemWriter<ConditionEo> DiagnosisEoItemWriter,
+    @Bean(name = "conditionStep")
+    public Step conditionStep(ItemReader<ConditionEo> conditionItemReader,
+                           ItemWriter<ConditionEo> ConditionEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
-        return new StepBuilder("diagnosisStep", jobRepository)
+        return new StepBuilder("conditionStep", jobRepository)
                 .<ConditionEo, ConditionEo>chunk(2, ptm)
-                .reader(diagnosisItemReader)
-                .writer(DiagnosisEoItemWriter)
+                .reader(conditionItemReader)
+                .writer(ConditionEoItemWriter)
                 .build();
     }
 
     @Bean
-    public ItemReader<ConditionEo> diagnosisItemReader() {
+    public ItemReader<ConditionEo> conditionItemReader() {
         return new FlatFileItemReaderBuilder<ConditionEo>()
-                .name("diagnosisItemReader")
+                .name("conditionItemReader")
                 .resource(new ClassPathResource("catalogs/icd10.csv"))
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
-                //.fieldSetMapper(new RecordFieldSetMapper(DiagnosisEo.class))
+                //.fieldSetMapper(new RecordFieldSetMapper(ConditionEo.class))
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<ConditionEo>() {{
                     setTargetType(ConditionEo.class);
                 }})
@@ -59,7 +59,7 @@ public class DiagnosisImportConfiguration {
     }
     
     @Bean
-    public ItemWriter<ConditionEo> diagnosisItemWriter(ConditionRepository repository) {
+    public ItemWriter<ConditionEo> conditionItemWriter(ConditionRepository repository) {
         return chunks -> chunks.getItems().forEach(chunk -> {
             chunk.id = UUID.randomUUID().toString();
             repository.save(chunk);
