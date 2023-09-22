@@ -69,8 +69,6 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 	testImplementation("io.github.resilience4j:resilience4j-spring-boot3")
-
-	//implementation("org.springframework.cloud:spring-cloud-starter-consul-all:4.0.2")
 }
 
 tasks.withType<Test> {
@@ -93,7 +91,7 @@ tasks.register("dockerImageNativeNoTest") {group = "build"; dependsOn("bootJar")
 	jib.to.image = ""
 	doFirst {
 		exec { commandLine(
-			"docker", "run", "--rm", "--mount", "type=bind,source=${projectDir}/build,target=/build", "--entrypoint", "/bin/bash", graalvmBuilderImage, "-c", """ mkdir -p /build/native/nativeCompile && cp /build/libs/*-SNAPSHOT.jar /build/native/nativeCompile && cd /build/native/nativeCompile && jar -xvf *.jar &&
+			"docker", "run", "--rm", "--mount", "type=bind,source=${projectDir}/build,target=/build", "--entrypoint", "/bin/bash", graalvmBuilderImage, "-c", """ mkdir -p /build/native/nativeCompile && cp /build/libs/*.jar /build/native/nativeCompile && cd /build/native/nativeCompile && jar -xvf *.jar &&
 			native-image -J-Xmx5000m -march=compatibility -H:Name=application $([[ -f META-INF/native-image/argfile ]] && echo @META-INF/native-image/argfile) -cp .:BOOT-INF/classes:$(ls -d -1 "/build/native/nativeCompile/BOOT-INF/lib/"*.* | tr "\n" ":") && /build/native/nativeCompile/application -check-integrity """
 		)}
 		jib.from.image = "ubuntu:22.04"
