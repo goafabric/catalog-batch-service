@@ -1,6 +1,6 @@
 # 1.0.4
-- java 21 upgrade
-- upgrade to Spring Boot 3.1.3
+- java 21 compatibility
+- upgrade to Spring Boot 3.1.4
 - various dependency upgrades
 
 # 1.0.3

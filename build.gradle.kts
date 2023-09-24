@@ -12,7 +12,7 @@ jacoco.toolVersion = "0.8.10"
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "3.1.3"
+	id("org.springframework.boot") version "3.1.4"
 	id("io.spring.dependency-management") version "1.1.0"
 	id("org.graalvm.buildtools.native") version "0.9.24"
 	id("com.google.cloud.tools.jib") version "3.3.2"
@@ -30,7 +30,7 @@ dependencies {
 	constraints {
 		implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 		implementation("org.mapstruct:mapstruct:1.5.4.Final")
-		annotationProcessor("org.mapstruct:mapstruct-processor:1.5.4.Final")
+		annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 		implementation("io.github.resilience4j:resilience4j-spring-boot3:2.0.2")
 	}
 }
