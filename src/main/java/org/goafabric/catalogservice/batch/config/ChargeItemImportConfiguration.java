@@ -12,13 +12,10 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import java.util.UUID;
 
 @Configuration
 public class ChargeItemImportConfiguration {
@@ -49,19 +46,16 @@ public class ChargeItemImportConfiguration {
                 .name("InsuranceItemReader")
                 .resource(new ClassPathResource("catalogs/goae.csv"))
                 .delimited().delimiter(";")
-                .names(new String[]{"code", "display", "orice"})
-                //.fieldSetMapper(new RecordFieldSetMapper(ChargeItemEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(ChargeItemEo.class); }})
+                .names(new String[]{"code", "display", "price"})
+                .fieldSetMapper(fieldSet ->
+                        new ChargeItemEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readDouble("price")))
                 .build();
 
     }
     
     @Bean
     public ItemWriter<ChargeItemEo> chargeItemItemWriter(ChargeItemRepository repository) {
-        return chunks -> chunks.getItems().forEach(chargeItemEo -> {
-            chargeItemEo.id = UUID.randomUUID().toString();
-            repository.save(chargeItemEo);
-        });
+        return repository::saveAll;
     }
 
 }

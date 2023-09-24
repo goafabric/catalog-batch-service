@@ -4,30 +4,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
-//@Entity @Table(name = "chargeitem")
+import java.util.UUID;
+
 @Table(name = "chargeitem", schema = "catalog")
-public class ChargeItemEo {
-    //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
-    @Id
-    public String id;
-
-    public String code;
-    public String display;
-    public Double price;
-
-    @Version //optimistic locking
-    public Long version;
-
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setDisplay(String display) {
-        this.display = display;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
+public record ChargeItemEo(
+    @Id String id,
+    @Version Long version,
+    String code,
+    String display,
+    Double price
+) {
+    public ChargeItemEo(String code, String display, Double price) {
+        this(UUID.randomUUID().toString(), null, code, display, price);
     }
 }

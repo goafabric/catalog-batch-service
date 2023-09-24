@@ -58,7 +58,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
-
 	implementation("org.flywaydb:flyway-core")
 
 	//code generation
@@ -67,8 +66,6 @@ dependencies {
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
-	testImplementation("io.github.resilience4j:resilience4j-spring-boot3")
 }
 
 tasks.withType<Test> {
