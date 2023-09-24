@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 group = "org.goafabric"
-version = "1.0.4-SNAPSHOT"
+version = "1.0.4-superref-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
@@ -59,10 +59,6 @@ dependencies {
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
 	implementation("org.flywaydb:flyway-core")
-
-	//code generation
-	implementation("org.mapstruct:mapstruct")
-	annotationProcessor("org.mapstruct:mapstruct-processor")
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
