@@ -12,13 +12,10 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import java.util.UUID;
 
 @Configuration
 public class InsuranceImportConfiguration {
@@ -50,18 +47,15 @@ public class InsuranceImportConfiguration {
                 .resource(new ClassPathResource("catalogs/insurance_pkv.csv"))
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
-                //.fieldSetMapper(new RecordFieldSetMapper(InsuranceEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(InsuranceEo.class); }})
+                .fieldSetMapper(fieldSet ->
+                        new InsuranceEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readString("shortname")))
                 .build();
 
     }
-    
+
     @Bean
     public ItemWriter<InsuranceEo> insuranceItemWriter(InsuranceRepository repository) {
-        return chunks -> chunks.getItems().forEach(insuranceEo -> {
-            insuranceEo.id = UUID.randomUUID().toString();
-            repository.save(insuranceEo);
-        });
+        return repository::saveAll;
     }
 
 }

@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
-//@Entity @Table(name = "condition")
 @Table(name = "condition", schema = "catalog")
 public record ConditionEo (
     @Id String id,

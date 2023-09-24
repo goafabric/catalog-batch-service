@@ -4,35 +4,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
-//@Entity @Table(name = "insurance")
+import java.util.UUID;
+
 @Table(name = "insurance", schema = "catalog")
-public class InsuranceEo {
-
-    //@org.springframework.data.annotation.Id @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
-    @Id
-    public String id;
-
-    public String code;
-    public String display;
-    public String shortname;
-
-    @Version //optimistic locking
-    public Long version;
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setDisplay(String display) {
-        this.display = display;
-    }
-
-    public void setShortname(String shortname) {
-        this.shortname = shortname;
+public record InsuranceEo(
+    @Id String id,
+    @Version Long version,
+    String code,
+    String display,
+    String shortname
+) {
+    public InsuranceEo(String code, String display, String shortname) {
+        this(UUID.randomUUID().toString(), null, code, display, shortname);
     }
 }
