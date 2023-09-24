@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "insurances", produces = MediaType.APPLICATION_JSON_VALUE)
 public class InsuranceController {
-    private final InsuranceRepository logic;
+    private final InsuranceRepository repository;
 
-    public InsuranceController(InsuranceRepository logic) {
-        this.logic = logic;
+    public InsuranceController(InsuranceRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/{id}")
     public InsuranceEo getById(@PathVariable String id) {
-        return logic.findById(id).get();
+        return repository.findById(id).get();
     }
 
     @GetMapping("/findByDisplay")
     public List<InsuranceEo> findByDisplay(@RequestParam("display") String display) {
-        return logic.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWithIgnoreCase(display);
     }
 }

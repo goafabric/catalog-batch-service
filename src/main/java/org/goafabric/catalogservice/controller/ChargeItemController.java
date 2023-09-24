@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "chargeitems", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ChargeItemController {
-    private final ChargeItemRepository logic;
+    private final ChargeItemRepository repository;
 
-    public ChargeItemController(ChargeItemRepository logic) {
-        this.logic = logic;
+    public ChargeItemController(ChargeItemRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/{id}")
     public ChargeItemEo getById(@PathVariable String id) {
-        return logic.findById(id).get();
+        return repository.findById(id).get();
     }
 
     @GetMapping("/findByDisplay")
     public List<ChargeItemEo> findByDisplay(@RequestParam("display") String display) {
-        return logic.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWithIgnoreCase(display);
     }
 }

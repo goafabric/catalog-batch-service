@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "diagnosis", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ConditionController {
-    private final ConditionRepository logic;
+    private final ConditionRepository repository;
 
-    public ConditionController(ConditionRepository logic) {
-        this.logic = logic;
+    public ConditionController(ConditionRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/{id}")
     public ConditionEo getById(@PathVariable String id) {
-        return logic.findById(id).get();
+        return repository.findById(id).get();
     }
 
     @GetMapping("/findByDisplay")
     public List<ConditionEo> findByDisplay(@RequestParam("display") String display) {
-        return logic.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWithIgnoreCase(display);
     }
 }
