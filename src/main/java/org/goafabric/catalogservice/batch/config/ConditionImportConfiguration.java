@@ -12,13 +12,10 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import java.util.UUID;
 
 @Configuration
 public class ConditionImportConfiguration {
@@ -50,18 +47,15 @@ public class ConditionImportConfiguration {
                 .resource(new ClassPathResource("catalogs/icd10.csv"))
                 .delimited().delimiter(";")
                 .names(new String[]{"code", "display", "shortname"})
-                //.fieldSetMapper(new RecordFieldSetMapper(ConditionEo.class))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{ setTargetType(ConditionEo.class); }})
+                .fieldSetMapper(fieldSet ->
+                        new ConditionEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readString("shortname")))
                 .build();
 
     }
     
     @Bean
     public ItemWriter<ConditionEo> conditionItemWriter(ConditionRepository repository) {
-        return chunks -> chunks.getItems().forEach(conditionEo -> {
-            conditionEo.id = UUID.randomUUID().toString();
-            repository.save(conditionEo);
-        });
+        return repository::saveAll;
     }
 
 }
