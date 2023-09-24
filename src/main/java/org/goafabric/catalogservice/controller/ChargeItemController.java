@@ -1,7 +1,7 @@
-package org.goafabric.catalogservice.service.controller;
+package org.goafabric.catalogservice.controller;
 
-import org.goafabric.catalogservice.service.repository.ChargeItemRepository;
-import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
+import org.goafabric.catalogservice.repository.ChargeItemRepository;
+import org.goafabric.catalogservice.repository.entity.ChargeItemEo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

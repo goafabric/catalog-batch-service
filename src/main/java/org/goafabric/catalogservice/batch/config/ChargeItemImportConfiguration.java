@@ -1,8 +1,8 @@
 package org.goafabric.catalogservice.batch.config;
 
 import org.goafabric.catalogservice.batch.JobCompletionListener;
-import org.goafabric.catalogservice.service.repository.ChargeItemRepository;
-import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
+import org.goafabric.catalogservice.repository.ChargeItemRepository;
+import org.goafabric.catalogservice.repository.entity.ChargeItemEo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;

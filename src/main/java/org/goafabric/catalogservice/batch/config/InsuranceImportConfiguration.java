@@ -1,8 +1,8 @@
 package org.goafabric.catalogservice.batch.config;
 
 import org.goafabric.catalogservice.batch.JobCompletionListener;
-import org.goafabric.catalogservice.service.repository.InsuranceRepository;
-import org.goafabric.catalogservice.service.repository.entity.InsuranceEo;
+import org.goafabric.catalogservice.repository.InsuranceRepository;
+import org.goafabric.catalogservice.repository.entity.InsuranceEo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;

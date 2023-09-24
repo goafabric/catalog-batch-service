@@ -1,6 +1,6 @@
 package org.goafabric.catalogservice.logic;
 
-import org.goafabric.catalogservice.service.controller.ChargeItemController;
+import org.goafabric.catalogservice.controller.ChargeItemController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
 package org.goafabric.catalogservice.service.extensions;
 
-import org.goafabric.catalogservice.service.controller.ExceptionHandler;
+import org.goafabric.catalogservice.controller.ExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
