@@ -1,6 +1,6 @@
-package org.goafabric.catalogservice.service.repository;
+package org.goafabric.catalogservice.repository;
 
-import org.goafabric.catalogservice.service.repository.entity.ChargeItemEo;
+import org.goafabric.catalogservice.repository.entity.ChargeItemEo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

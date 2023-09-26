@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 group = "org.goafabric"
-version = "1.0.4-SNAPSHOT"
+version = "1.0.4-superref-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
@@ -29,7 +29,7 @@ repositories {
 dependencies {
 	constraints {
 		implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
-		implementation("org.mapstruct:mapstruct:1.5.4.Final")
+		implementation("org.mapstruct:mapstruct:1.5.5.Final")
 		annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 		implementation("io.github.resilience4j:resilience4j-spring-boot3:2.0.2")
 	}
@@ -51,7 +51,6 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
 
 	//crosscuting
-	implementation("org.springframework.boot:spring-boot-starter-aop")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 
 	//persistence
@@ -59,10 +58,6 @@ dependencies {
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
 	implementation("org.flywaydb:flyway-core")
-
-	//code generation
-	implementation("org.mapstruct:mapstruct")
-	annotationProcessor("org.mapstruct:mapstruct-processor")
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,6 +1,6 @@
 package org.goafabric.catalogservice.logic;
 
-import org.goafabric.catalogservice.service.controller.ConditionController;
+import org.goafabric.catalogservice.controller.ConditionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

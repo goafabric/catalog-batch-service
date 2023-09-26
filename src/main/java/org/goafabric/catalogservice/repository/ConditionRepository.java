@@ -1,7 +1,7 @@
-package org.goafabric.catalogservice.service.repository;
+package org.goafabric.catalogservice.repository;
 
 
-import org.goafabric.catalogservice.service.repository.entity.ConditionEo;
+import org.goafabric.catalogservice.repository.entity.ConditionEo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

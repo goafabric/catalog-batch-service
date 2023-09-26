@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.service.extensions;
+package org.goafabric.catalogservice.controller.extension;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
