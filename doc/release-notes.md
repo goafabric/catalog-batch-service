@@ -1,3 +1,5 @@
+# 1.0.5
+
 # 1.0.4
 - java 21 compatibility
 - upgrade to Spring Boot 3.1.4
