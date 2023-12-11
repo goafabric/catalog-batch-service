@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.service.crossfunctional;
+package org.goafabric.catalog.service.crossfunctional;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Value;

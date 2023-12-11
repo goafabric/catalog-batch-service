@@ -1,11 +1,11 @@
-_Values_root_name="catalog-service"
+_Values_root_name="catalog-batch-service"
 
-_Values_image_repository=goafabric/catalog-service
+_Values_image_repository=goafabric/catalog-batch-service
 _Values_image_tag=1.2.0-SNAPSHOT
 
 _Values_service_port=50600
-_Values_resources_entrypoint="java -Xms128M -Xmx128M -cp /app/resources:/app/classes:/app/libs/* org.goafabric.catalogservice.Application"
-_Values_resources_entrypoint_native="/workspace/org.goafabric.catalogservice.Application -Xmx32m"
+_Values_resources_entrypoint="java -Xms128M -Xmx128M -cp /app/resources:/app/classes:/app/libs/* org.goafabric.catalog.Application"
+_Values_resources_entrypoint_native="/workspace/org.goafabric.catalog.Application -Xmx32m"
 
 _Values_health_check_disabled=false
 

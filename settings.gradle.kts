@@ -5,4 +5,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = "catalog-service"
+rootProject.name = "catalog-batch-service"

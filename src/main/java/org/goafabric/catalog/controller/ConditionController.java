@@ -1,7 +1,7 @@
-package org.goafabric.catalogservice.controller;
+package org.goafabric.catalog.controller;
 
-import org.goafabric.catalogservice.repository.ConditionRepository;
-import org.goafabric.catalogservice.repository.entity.ConditionEo;
+import org.goafabric.catalog.job.condition.ConditionRepository;
+import org.goafabric.catalog.job.condition.ConditionEo;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

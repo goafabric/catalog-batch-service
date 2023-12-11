@@ -1,8 +1,6 @@
-package org.goafabric.catalogservice.batch.config;
+package org.goafabric.catalog.job.condition;
 
-import org.goafabric.catalogservice.batch.JobCompletionListener;
-import org.goafabric.catalogservice.repository.ConditionRepository;
-import org.goafabric.catalogservice.repository.entity.ConditionEo;
+import org.goafabric.catalog.job.JobCompletionListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;

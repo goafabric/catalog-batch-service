@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice;
+package org.goafabric.catalog;
 
 import io.micrometer.observation.ObservationPredicate;
 import org.springframework.aot.hint.RuntimeHints;

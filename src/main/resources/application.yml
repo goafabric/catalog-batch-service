@@ -8,7 +8,7 @@ server:
 management:
     endpoint:
       health:
-        show-details: always
+        show-details: never
     endpoints:
       web:
         exposure:
@@ -18,7 +18,7 @@ management:
 springdoc.swagger-ui.path: /swagger-ui/index.html
 
 #jaeger / zipkin
-spring.application.name: catalog-service
+spring.application.name: catalog-batch-service
 management.tracing.sampling.probability: "1.0"
 logging.level.io.opentelemetry: "OFF"
 management.otlp.tracing.endpoint: "http://localhost:4318/v1/traces"

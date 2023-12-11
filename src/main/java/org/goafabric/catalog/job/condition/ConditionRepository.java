@@ -1,7 +1,6 @@
-package org.goafabric.catalogservice.repository;
+package org.goafabric.catalog.job.condition;
 
 
-import org.goafabric.catalogservice.repository.entity.ConditionEo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

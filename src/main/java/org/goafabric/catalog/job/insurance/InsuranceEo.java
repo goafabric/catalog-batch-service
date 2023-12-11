@@ -1,4 +1,4 @@
-package org.goafabric.catalogservice.repository.entity;
+package org.goafabric.catalog.job.insurance;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
