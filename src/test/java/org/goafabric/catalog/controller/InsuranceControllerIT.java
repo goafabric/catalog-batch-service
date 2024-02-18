@@ -1,6 +1,5 @@
-package org.goafabric.catalog.logic;
+package org.goafabric.catalog.controller;
 
-import org.goafabric.catalog.controller.InsuranceController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class InsuranceLogicIT {
+public class InsuranceControllerIT {
     @Autowired
     private InsuranceController insuranceController;
 
