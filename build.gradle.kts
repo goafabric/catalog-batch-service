@@ -17,7 +17,6 @@ plugins {
 	id("com.google.cloud.tools.jib") version "3.4.2"
 	id("net.researchgate.release") version "3.0.2"
 }
-jacoco { toolVersion = "0.8.10" }
 
 repositories {
 	mavenCentral()
