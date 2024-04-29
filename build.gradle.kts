@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
-group = "org.goafabric"
-version = "1.2.4-SNAPSHOT"
+val group: String by project
+val version: String by project
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 val dockerRegistry = "goafabric"
@@ -11,13 +11,13 @@ val baseImage = "ibm-semeru-runtimes:open-21.0.1_12-jre-focal@sha256:24d43669156
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "3.2.4"
+	id("org.springframework.boot") version "3.2.5"
 	id("io.spring.dependency-management") version "1.1.4"
 	id("org.graalvm.buildtools.native") version "0.9.28"
-	id("com.google.cloud.tools.jib") version "3.4.0"
+	id("com.google.cloud.tools.jib") version "3.4.2"
+	id("net.researchgate.release") version "3.0.2"
+	id("org.sonarqube") version "5.0.0.4638"
 }
-
-jacoco { toolVersion = "0.8.10" }
 
 repositories {
 	mavenCentral()
@@ -91,6 +91,9 @@ tasks.named<BootBuildImage>("bootBuildImage") {
 	}
 }
 
-graalvmNative { //https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html#configuration-options
-	binaries.named("main") { quickBuild.set(true) }
+graalvmNative { binaries.named("main") { quickBuild.set(true) } }
+
+configure<net.researchgate.release.ReleaseExtension> {
+	buildTasks.set(listOf("build", "test", "jib", "dockerImageNative"))
+	tagTemplate.set("v${version}".replace("-SNAPSHOT", ""))
 }
