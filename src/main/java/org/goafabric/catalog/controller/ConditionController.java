@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "diagnosis", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "conditions", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ConditionController {
     private final ConditionRepository repository;
 
