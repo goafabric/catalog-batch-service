@@ -11,6 +11,10 @@ public class InsuranceControllerIT {
     @Autowired
     private InsuranceController insuranceController;
 
+    @Test
+    void findByCode() {
+        assertThat(insuranceController.findByCode("168140040")).isNotNull();
+    }
 
     @Test
     void search() {

@@ -21,6 +21,11 @@ public class InsuranceController {
         return repository.findById(id).get();
     }
 
+    @GetMapping("/findByCode")
+    public List<InsuranceEo> findByCode(@RequestParam("code") String code) {
+        return repository.findByCode(code);
+    }
+
     @GetMapping("/findByDisplay")
     public List<InsuranceEo> findByDisplay(@RequestParam("display") String display) {
         return repository.findByDisplayStartsWithIgnoreCase(display);

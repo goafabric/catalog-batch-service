@@ -10,10 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ChargeItemControllerIT {
 
     @Autowired
-    private ChargeItemController insuranceController;
+    private ChargeItemController chargeItemController;
 
     @Test
-    void search() {
-        assertThat(insuranceController.findByDisplay("")).isNotNull().isNotEmpty();
+    void findByCode() {
+        assertThat(chargeItemController.findByCode("GOAE1")).isNotNull();
+    }
+
+    @Test
+    void findByDisplay() {
+        assertThat(chargeItemController.findByDisplay("")).isNotNull().isNotEmpty();
     }
 }
