@@ -1,4 +1,4 @@
-package org.goafabric.catalog.service.extensions;
+package org.goafabric.catalog.controller.extensions;
 
 import org.goafabric.catalog.controller.extension.ExceptionHandler;
 import org.junit.jupiter.api.Test;

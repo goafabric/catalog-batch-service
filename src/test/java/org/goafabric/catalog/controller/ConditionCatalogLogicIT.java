@@ -12,6 +12,11 @@ public class ConditionCatalogLogicIT {
     private ConditionController conditionController;
 
     @Test
+    void findByCode() {
+        assertThat(conditionController.findByCode("E66.00")).isNotNull();
+    }
+
+    @Test
     void search() {
         assertThat(conditionController.findByDisplay("")).isNotNull().isNotEmpty();
     }

@@ -1,14 +1,14 @@
 package org.goafabric.catalog.controller;
 
-import org.goafabric.catalog.job.condition.ConditionRepository;
 import org.goafabric.catalog.job.condition.ConditionEo;
+import org.goafabric.catalog.job.condition.ConditionRepository;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "diagnosis", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "conditions", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ConditionController {
     private final ConditionRepository repository;
 
@@ -19,6 +19,12 @@ public class ConditionController {
     @GetMapping("/{id}")
     public ConditionEo getById(@PathVariable String id) {
         return repository.findById(id).get();
+    }
+
+
+    @GetMapping("/findByCode")
+    public ConditionEo findByCode(@RequestParam("code") String code) {
+        return repository.findByCode(code);
     }
 
     @GetMapping("/findByDisplay")

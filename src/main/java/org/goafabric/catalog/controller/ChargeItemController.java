@@ -21,6 +21,11 @@ public class ChargeItemController {
         return repository.findById(id).get();
     }
 
+    @GetMapping("/findByCode")
+    public ChargeItemEo findByCode(@RequestParam("code") String code) {
+        return repository.findByCode(code);
+    }
+
     @GetMapping("/findByDisplay")
     public List<ChargeItemEo> findByDisplay(@RequestParam("display") String display) {
         return repository.findByDisplayStartsWithIgnoreCase(display);
