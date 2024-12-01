@@ -28,6 +28,14 @@ repositories {
 	maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
+//spring boot 3.4.0 native fix
+dependencyManagement {
+	dependencies {
+		dependency("org.flywaydb:flyway-core:10.10.0")
+		dependency("org.flywaydb:flyway-database-postgresql:10.10.0")
+	}
+}
+
 dependencies {
 	constraints {
 		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
