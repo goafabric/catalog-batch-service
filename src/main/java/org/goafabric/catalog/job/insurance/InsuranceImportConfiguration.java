@@ -1,6 +1,7 @@
 package org.goafabric.catalog.job.insurance;
 
 import org.goafabric.catalog.job.JobCompletionListener;
+import org.goafabric.catalog.job.StepCompletionListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -35,6 +36,7 @@ public class InsuranceImportConfiguration {
                 .<InsuranceEo, InsuranceEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
                 .writer(InsuranceEoItemWriter)
+                .listener(new StepCompletionListener())
                 .build();
     }
 
