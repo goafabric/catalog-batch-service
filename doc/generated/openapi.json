@@ -1,0 +1,365 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/insurances/{id}": {
+      "get": {
+        "tags": [
+          "insurance-controller"
+        ],
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsuranceEo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insurances/findByDisplay": {
+      "get": {
+        "tags": [
+          "insurance-controller"
+        ],
+        "operationId": "findByDisplay",
+        "parameters": [
+          {
+            "name": "display",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InsuranceEo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insurances/findByCode": {
+      "get": {
+        "tags": [
+          "insurance-controller"
+        ],
+        "operationId": "findByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InsuranceEo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conditions/{id}": {
+      "get": {
+        "tags": [
+          "condition-controller"
+        ],
+        "operationId": "getById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConditionEo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conditions/findByDisplay": {
+      "get": {
+        "tags": [
+          "condition-controller"
+        ],
+        "operationId": "findByDisplay_1",
+        "parameters": [
+          {
+            "name": "display",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConditionEo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conditions/findByCode": {
+      "get": {
+        "tags": [
+          "condition-controller"
+        ],
+        "operationId": "findByCode_1",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConditionEo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chargeitems/{id}": {
+      "get": {
+        "tags": [
+          "charge-item-controller"
+        ],
+        "operationId": "getById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChargeItemEo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chargeitems/findByDisplay": {
+      "get": {
+        "tags": [
+          "charge-item-controller"
+        ],
+        "operationId": "findByDisplay_2",
+        "parameters": [
+          {
+            "name": "display",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChargeItemEo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chargeitems/findByCode": {
+      "get": {
+        "tags": [
+          "charge-item-controller"
+        ],
+        "operationId": "findByCode_2",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChargeItemEo"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InsuranceEo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "shortname": {
+            "type": "string"
+          }
+        }
+      },
+      "ConditionEo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "shortname": {
+            "type": "string"
+          }
+        }
+      },
+      "ChargeItemEo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}
