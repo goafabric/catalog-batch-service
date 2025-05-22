@@ -18,7 +18,7 @@ public class ChargeItemController {
 
     @GetMapping("/{id}")
     public ChargeItemEo getById(@PathVariable String id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow();
     }
 
     @GetMapping("/findByCode")
