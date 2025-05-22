@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionException;
 import org.springframework.batch.core.JobParameters;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,18 +18,20 @@ import java.util.List;
 public class JobLauncherStarter implements CommandLineRunner {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private org.springframework.batch.core.launch.JobLauncher jobLauncher;
+    private final org.springframework.batch.core.launch.JobLauncher jobLauncher;
 
-    @Autowired
-    private List<Job> jobs;
+    private final List<Job> jobs;
 
-    @Value("${database.provisioning.goals:}")
-    String goals;
+    private final ApplicationContext applicationContext;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final String goals;
 
+    public JobLauncherStarter(JobLauncher jobLauncher, List<Job> jobs, ApplicationContext applicationContext, @Value("${database.provisioning.goals:}") String goals) {
+        this.jobLauncher = jobLauncher;
+        this.jobs = jobs;
+        this.applicationContext = applicationContext;
+        this.goals = goals;
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,7 +42,7 @@ public class JobLauncherStarter implements CommandLineRunner {
                 try {
                     jobLauncher.run(job, new JobParameters());
                 } catch (JobExecutionException e) {
-                    throw new RuntimeException(e);
+                    throw new IllegalStateException(e);
                 }
             });
         }

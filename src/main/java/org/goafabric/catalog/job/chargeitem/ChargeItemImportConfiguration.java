@@ -29,13 +29,13 @@ public class ChargeItemImportConfiguration {
 
     @Bean
     public Step chargeItemStep(ItemReader<ChargeItemEo> diagnosisItemReader,
-                           ItemWriter<ChargeItemEo> ChargeItemEoItemWriter,
+                           ItemWriter<ChargeItemEo> chargeItemEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
         return new StepBuilder("chargeItemStep", jobRepository)
                 .<ChargeItemEo, ChargeItemEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
-                .writer(ChargeItemEoItemWriter)
+                .writer(chargeItemEoItemWriter)
                 .listener(new StepCompletionListener())
                 .build();
     }
@@ -46,7 +46,7 @@ public class ChargeItemImportConfiguration {
                 .name("InsuranceItemReader")
                 .resource(new ClassPathResource("catalogs/goae.csv"))
                 .delimited().delimiter(";")
-                .names(new String[]{"code", "display", "price"})
+                .names("code", "display", "price")
                 .fieldSetMapper(fieldSet ->
                         new ChargeItemEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readDouble("price")))
                 .build();
