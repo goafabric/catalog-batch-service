@@ -29,13 +29,13 @@ public class InsuranceImportConfiguration {
 
     @Bean
     public Step insuranceStep(ItemReader<InsuranceEo> diagnosisItemReader,
-                           ItemWriter<InsuranceEo> InsuranceEoItemWriter,
+                           ItemWriter<InsuranceEo> insuranceEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
         return new StepBuilder("insuranceStep", jobRepository)
                 .<InsuranceEo, InsuranceEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
-                .writer(InsuranceEoItemWriter)
+                .writer(insuranceEoItemWriter)
                 .listener(new StepCompletionListener())
                 .build();
     }
@@ -46,7 +46,7 @@ public class InsuranceImportConfiguration {
                 .name("insuranceItemReader")
                 .resource(new ClassPathResource("catalogs/insurance_pkv.csv"))
                 .delimited().delimiter(";")
-                .names(new String[]{"code", "display", "shortname"})
+                .names("code", "display", "shortname")
                 .fieldSetMapper(fieldSet ->
                         new InsuranceEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readString("shortname")))
                 .build();
