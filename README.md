@@ -1,3 +1,11 @@
+# sonarqube
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=coverage)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
+
 # docker compose
 go to /src/deploy/docker and do "./stack up" or "./stack up -native"
 
