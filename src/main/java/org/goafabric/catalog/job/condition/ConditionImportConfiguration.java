@@ -20,7 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class ConditionImportConfiguration {
 
     @Bean
-    public Job ConditionEoJob(Step conditionStep, JobCompletionListener listener, JobRepository jobRepository) {
+    public Job conditionEoJob(Step conditionStep, JobCompletionListener listener, JobRepository jobRepository) {
         return new JobBuilder("conditionJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(listener).flow(conditionStep).end()
