@@ -20,7 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class ConditionImportConfiguration {
 
     @Bean
-    public Job ConditionEoJob(Step conditionStep, JobCompletionListener listener, JobRepository jobRepository) {
+    public Job conditionEoJob(Step conditionStep, JobCompletionListener listener, JobRepository jobRepository) {
         return new JobBuilder("conditionJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(listener).flow(conditionStep).end()
@@ -29,13 +29,13 @@ public class ConditionImportConfiguration {
 
     @Bean(name = "conditionStep")
     public Step conditionStep(ItemReader<ConditionEo> conditionItemReader,
-                           ItemWriter<ConditionEo> ConditionEoItemWriter,
+                           ItemWriter<ConditionEo> conditionEoItemWriter,
                            JobRepository jobRepository,
                            PlatformTransactionManager ptm) {
         return new StepBuilder("conditionStep", jobRepository)
                 .<ConditionEo, ConditionEo>chunk(2, ptm)
                 .reader(conditionItemReader)
-                .writer(ConditionEoItemWriter)
+                .writer(conditionEoItemWriter)
                 .listener(new StepCompletionListener())
                 .build();
     }
@@ -46,7 +46,7 @@ public class ConditionImportConfiguration {
                 .name("conditionItemReader")
                 .resource(new ClassPathResource("catalogs/icd10.csv"))
                 .delimited().delimiter(";")
-                .names(new String[]{"code", "display", "shortname"})
+                .names("code", "display", "shortname")
                 .fieldSetMapper(fieldSet ->
                         new ConditionEo(fieldSet.readString("code"), fieldSet.readString("display"), fieldSet.readString("shortname")))
                 .build();

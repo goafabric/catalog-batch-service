@@ -18,7 +18,7 @@ public class ConditionController {
 
     @GetMapping("/{id}")
     public ConditionEo getById(@PathVariable String id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow();
     }
 
 

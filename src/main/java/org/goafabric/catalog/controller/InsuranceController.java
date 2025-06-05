@@ -18,7 +18,7 @@ public class InsuranceController {
 
     @GetMapping("/{id}")
     public InsuranceEo getById(@PathVariable String id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow();
     }
 
     @GetMapping("/findByCode")
