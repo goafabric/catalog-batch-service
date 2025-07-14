@@ -6,13 +6,17 @@ server:
 
 #monitoring
 management:
-    endpoint:
-      health:
-        show-details: never
-    endpoints:
-      web:
-        exposure:
-          include: "health,prometheus,heapdump"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus,heapdump"
+
+management.endpoint.health.probes.enabled: "true"
 
 #openapi
 springdoc.swagger-ui.path: /swagger-ui/index.html
