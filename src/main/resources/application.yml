@@ -61,8 +61,8 @@ database.provisioning.goals: "-import-catalog-data"
 spring.autoconfigure.exclude: ${mongodb.autoconfiguration}
 spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/catalog?authSource=admin"
 
-mongodb.autoconfiguration: "org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration"
-jdbc.autoconfiguration: "org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration"
+mongodb.autoconfiguration: "org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.MongoDataAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.MongoRepositoriesAutoConfiguration"
+jdbc.autoconfiguration: "org.springframework.boot.data.jdbc.autoconfigure.JdbcRepositoriesAutoConfiguration"
 
 #logging
 logging.level.root: "WARN"
