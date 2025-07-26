@@ -5,7 +5,7 @@ val version: String by project
 java.sourceCompatibility = JavaVersion.VERSION_24
 
 val dockerRegistry = "goafabric"
-val baseImage = "ibm-semeru-runtimes:open-21.0.4.1_7-jre-focal@sha256:8b94f8b14fd1d4660f9dc777b1ad3630f847b8e3dc371203bcb857a5e74d6c39"
+val baseImage = "eclipse-temurin:24.0.1_9-jre@sha256:f46122a0c12ca47dbad8cf145aea4b7373a4c5eccdd9cfbadaf84ed9621e2b56"
 
 plugins {
 	java
