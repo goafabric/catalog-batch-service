@@ -2,11 +2,11 @@ package org.goafabric.catalog.job.chargeitem;
 
 import org.goafabric.catalog.job.JobCompletionListener;
 import org.goafabric.catalog.job.StepCompletionListener;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
+import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -29,9 +29,9 @@ public class ChargeItemImportConfiguration {
 
     @Bean
     public Step chargeItemStep(ItemReader<ChargeItemEo> diagnosisItemReader,
-                           ItemWriter<ChargeItemEo> chargeItemEoItemWriter,
-                           JobRepository jobRepository,
-                           PlatformTransactionManager ptm) {
+                               ItemWriter<ChargeItemEo> chargeItemEoItemWriter,
+                               JobRepository jobRepository,
+                               PlatformTransactionManager ptm) {
         return new StepBuilder("chargeItemStep", jobRepository)
                 .<ChargeItemEo, ChargeItemEo>chunk(2, ptm)
                 .reader(diagnosisItemReader)
