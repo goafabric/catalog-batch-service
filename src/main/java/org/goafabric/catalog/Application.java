@@ -14,7 +14,8 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 
 @SpringBootApplication
 @ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
-@RegisterReflection(classes = PublishingConfigurationExtension.class, memberCategories = MemberCategory.INVOKE_PUBLIC_METHODS)
+@RegisterReflection(classes = {PublishingConfigurationExtension.class,  java.sql.Types.class}
+        , memberCategories = {MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.ACCESS_DECLARED_FIELDS })
 public class Application {
 
     public static void main(String[] args){
