@@ -55,7 +55,7 @@ recipeList:
 
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.batch.core.JobExecutionException
-      newFullyQualifiedTypeName: org.springframework.batch.core.job.JobExecutionException;
+      newFullyQualifiedTypeName: org.springframework.batch.core.job.JobExecutionException
 
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.batch.core.JobParameters
