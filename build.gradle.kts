@@ -20,6 +20,8 @@ plugins {
 
 	id("org.cyclonedx.bom") version "2.3.1"
 	id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
+
+	id("org.openrewrite.rewrite") version "7.12.1"
 }
 
 repositories {
@@ -104,3 +106,5 @@ openApi {
 	customBootRun { args.set(listOf("--server.port=8080")) }
 	tasks.forkedSpringBootRun { dependsOn("compileAotJava", "processAotResources") }
 }
+
+rewrite { activeRecipe("org.goafabric.java.spring.boot4.UpgradeSpringBoot_4_0") }
