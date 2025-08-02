@@ -49,6 +49,18 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.batch.core.StepExecutionListener
       newFullyQualifiedTypeName: org.springframework.batch.core.listener.StepExecutionListener
 
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.batch.core.Job
+      newFullyQualifiedTypeName: org.springframework.batch.core.job.Job
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.batch.core.JobExecutionException
+      newFullyQualifiedTypeName: org.springframework.batch.core.job.JobExecutionException;
+
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.batch.core.JobParameters
+      newFullyQualifiedTypeName: org.springframework.batch.core.job.parameters.JobParameters
+
   # fix deprecations
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
