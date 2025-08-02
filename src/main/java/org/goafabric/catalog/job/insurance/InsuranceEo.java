@@ -2,13 +2,12 @@ package org.goafabric.catalog.job.insurance;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.UUID;
 
 @Table(name = "insurance", schema = "catalog")
-@Document("insurance")
+//@Document("insurance")
 public record InsuranceEo(
     @Id String id,
     @Version Long version,
