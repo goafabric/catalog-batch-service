@@ -71,25 +71,6 @@ recipeList:
         tasks.
       regex: true
       filePattern: 'build.gradle.kts'
-  # d
-
-  - org.openrewrite.text.CreateTextFile:
-      relativeFileName: src/main/java/com/example/MyGeneratedClass.java
-      overwrite: true
-      fileContents: |
-        package com.example;
-
-        public class MyGeneratedClass {
-            private String name;
-
-            public MyGeneratedClass(String name) {
-                this.name = name;
-            }
-
-            public String getName() {
-                return name;
-            }
-        }      
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -127,3 +108,19 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.batch.core.JobParameters
       newFullyQualifiedTypeName: org.springframework.batch.core.job.parameters.JobParameters
+
+  # Reflection Hints
+  - org.openrewrite.text.CreateTextFile:
+      relativeFileName: src/main/java/com/example/MyGeneratedClass.java
+      overwrite: true
+      fileContents: |
+        package org.goafabric.nativehints;
+
+        import org.springframework.aot.hint.MemberCategory;
+        import org.springframework.aot.hint.annotation.RegisterReflection;
+        import org.springframework.context.annotation.Configuration;
+
+        @Configuration
+        @RegisterReflection(classes = {org.flywaydb.core.internal.publishing.PublishingConfigurationExtension.class,  org.flywaydb.database.postgresql.TransactionalModel.class, java.sql.Types.class}
+        , memberCategories = {MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.ACCESS_DECLARED_FIELDS })
+        public class FlywayHints {}
