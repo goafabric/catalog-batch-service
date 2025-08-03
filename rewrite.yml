@@ -39,6 +39,42 @@ recipeList:
       oldFullyQualifiedTypeName: org.springframework.boot.test.web.server.LocalServerPort
       newFullyQualifiedTypeName: org.springframework.boot.web.server.test.LocalServerPort
 
+  # fix deprecations
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
+      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoBean
+
+  # remove incompatible dependencies
+  - org.openrewrite.gradle.RemoveDependency:
+      groupId: net.ttddyy.observation
+      artifactId: datasource-micrometer-spring-boot
+
+  # deactivate springdoc kotlin support for now
+  - org.openrewrite.yaml.MergeYaml:
+      filePattern: src/main/resources/application.yml
+      key: $
+      yaml: |
+        springdoc.enable-kotlin: false
+
+  # Fix the InjectedExeOps / Dependencies mess left behind
+  - org.openrewrite.text.FindAndReplace:
+      find: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations'
+      replace: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations }'
+      filePattern: 'build.gradle.kts'
+
+  - org.openrewrite.text.FindAndReplace:
+      find: '\n\}\s*\}\s*\ntasks\.'
+      replace: |
+        
+        }
+        tasks.
+      regex: true
+      filePattern: 'build.gradle.kts'
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: UpgradeSpringBatch_6_0
+recipeList:
   # Spring Batch Imports
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.batch.core.Step
@@ -71,35 +107,3 @@ recipeList:
   - org.openrewrite.java.ChangeType:
       oldFullyQualifiedTypeName: org.springframework.batch.core.JobParameters
       newFullyQualifiedTypeName: org.springframework.batch.core.job.parameters.JobParameters
-
-  # fix deprecations
-  - org.openrewrite.java.ChangeType:
-      oldFullyQualifiedTypeName: org.springframework.boot.test.mock.mockito.MockBean
-      newFullyQualifiedTypeName: org.springframework.test.context.bean.override.mockito.MockitoBean
-
-  # remove incompatible dependencies
-  - org.openrewrite.gradle.RemoveDependency:
-      groupId: net.ttddyy.observation
-      artifactId: datasource-micrometer-spring-boot
-
-  # deactivate springdoc kotlin support for now
-  - org.openrewrite.yaml.MergeYaml:
-      filePattern: src/main/resources/application.yml
-      key: $
-      yaml: |
-        springdoc.enable-kotlin: false
-
-  # Fix the InjectedExeOps / Dependencies mess left behind
-  - org.openrewrite.text.FindAndReplace:
-      find: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations'
-      replace: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations }'
-      filePattern: 'build.gradle.kts'
-
-  - org.openrewrite.text.FindAndReplace:
-      find: '\n\}\s*\}\s*\ntasks\.'
-      replace: |
-        
-        }
-        tasks.
-      regex: true
-      filePattern: 'build.gradle.kts'
