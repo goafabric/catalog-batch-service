@@ -71,6 +71,25 @@ recipeList:
         tasks.
       regex: true
       filePattern: 'build.gradle.kts'
+  # d
+
+  - org.openrewrite.text.CreateTextFile:
+      relativeFileName: src/main/java/com/example/MyGeneratedClass.java
+      overwrite: true
+      fileContents: |
+        package com.example;
+
+        public class MyGeneratedClass {
+            private String name;
+
+            public MyGeneratedClass(String name) {
+                this.name = name;
+            }
+
+            public String getName() {
+                return name;
+            }
+        }      
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
