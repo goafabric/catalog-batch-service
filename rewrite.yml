@@ -1,3 +1,4 @@
+#TODO: Adding Reflection Hint Classes, Kotlin Support
 ---
 type: specs.openrewrite.org/v1beta/recipe
 name: UpgradeSpringBoot_4_0
@@ -56,7 +57,7 @@ recipeList:
       yaml: |
         springdoc.enable-kotlin: false
 
-  # Fix the InjectedExeOps / Dependencies mess left behind
+  # Fix the InjectedExeOps / Dependencies mess left behind, @See: https://github.com/issues/created?issue=openrewrite%7Crewrite-gradle-plugin%7C394
   - org.openrewrite.text.FindAndReplace:
       find: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations'
       replace: 'interface InjectedExecOps { @get:Inject val execOps: ExecOperations }'
