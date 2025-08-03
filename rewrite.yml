@@ -111,7 +111,7 @@ recipeList:
 
   # Reflection Hints
   - org.openrewrite.text.CreateTextFile:
-      relativeFileName: src/main/java/com/example/MyGeneratedClass.java
+      relativeFileName: src/main/java/org/goafabric/nativehints/FlywayHints.java
       overwrite: true
       fileContents: |
         package org.goafabric.nativehints;
