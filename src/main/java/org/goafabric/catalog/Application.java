@@ -1,6 +1,5 @@
 package org.goafabric.catalog;
 
-import org.flywaydb.core.internal.publishing.PublishingConfigurationExtension;
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
@@ -14,7 +13,8 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 
 @SpringBootApplication
 @ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
-@RegisterReflection(classes = PublishingConfigurationExtension.class, memberCategories = MemberCategory.INVOKE_PUBLIC_METHODS)
+@RegisterReflection(classes = {org.flywaydb.core.internal.publishing.PublishingConfigurationExtension.class,  org.flywaydb.database.postgresql.TransactionalModel.class, java.sql.Types.class},
+        memberCategories = {MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.DECLARED_FIELDS})
 public class Application {
 
     public static void main(String[] args){
