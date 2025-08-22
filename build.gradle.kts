@@ -10,9 +10,9 @@ val baseImage = "eclipse-temurin:24.0.1_9-jre@sha256:f46122a0c12ca47dbad8cf145ae
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "4.0.0-M1"
+	id("org.springframework.boot") version "4.0.0-M2"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.graalvm.buildtools.native") version "0.10.6"
+	id("org.graalvm.buildtools.native") version "0.1.0"
 
 	id("com.google.cloud.tools.jib") version "3.4.5"
 	id("net.researchgate.release") version "3.1.0"
@@ -67,7 +67,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	//spring boot 4.0
-	implementation("org.springframework.boot:spring-boot-starter-opentelemetry:4.0.0-M1")
+	implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
 	implementation("org.springframework.boot:spring-boot-starter-flyway")
 }
 
