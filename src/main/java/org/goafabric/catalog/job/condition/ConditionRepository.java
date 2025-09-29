@@ -10,6 +10,6 @@ public interface ConditionRepository extends CrudRepository<ConditionEo, String>
     @Query("SELECT * FROM catalog.condition WHERE code = :code")
     ConditionEo findByCode(String code);
 
-    @Query("SELECT * FROM catalog.condition WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')")
+    @Query("SELECT * FROM catalog.condition WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')") //TODO: workaround for data jdbc schema bug
     List<ConditionEo> findByDisplayStartsWithIgnoreCase(String display);
 }
