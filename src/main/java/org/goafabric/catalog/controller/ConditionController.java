@@ -29,6 +29,6 @@ public class ConditionController {
 
     @GetMapping("/findByDisplay")
     public List<ConditionEo> findByDisplay(@RequestParam("display") String display) {
-        return repository.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWith(display);
     }
 }

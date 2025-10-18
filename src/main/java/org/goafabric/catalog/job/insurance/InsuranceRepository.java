@@ -10,5 +10,5 @@ public interface InsuranceRepository extends CrudRepository<InsuranceEo, String>
     List<InsuranceEo> findByCode(String code);
 
     @Query("SELECT * FROM catalog.insurance WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')")
-    List<InsuranceEo> findByDisplayStartsWithIgnoreCase(String display);
+    List<InsuranceEo> findByDisplayStartsWith(String display);
 }
