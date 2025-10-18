@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.JobExecutionException;
 import org.springframework.batch.core.job.parameters.JobParameters;
-import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +18,7 @@ import java.util.List;
 public class JobLauncherStarter implements CommandLineRunner {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final org.springframework.batch.core.launch.JobLauncher jobLauncher;
+    private final JobOperator jobOperator;
 
     private final List<Job> jobs;
 
@@ -26,8 +26,8 @@ public class JobLauncherStarter implements CommandLineRunner {
 
     private final String goals;
 
-    public JobLauncherStarter(JobLauncher jobLauncher, List<Job> jobs, ApplicationContext applicationContext, @Value("${database.provisioning.goals:}") String goals) {
-        this.jobLauncher = jobLauncher;
+    public JobLauncherStarter(JobOperator jobOperator, List<Job> jobs, ApplicationContext applicationContext, @Value("${database.provisioning.goals:}") String goals) {
+        this.jobOperator = jobOperator;
         this.jobs = jobs;
         this.applicationContext = applicationContext;
         this.goals = goals;
@@ -40,7 +40,7 @@ public class JobLauncherStarter implements CommandLineRunner {
         if (goals.contains("-import-catalog-data")) {
             jobs.forEach(job -> {
                 try {
-                    jobLauncher.run(job, new JobParameters());
+                    jobOperator.start(job, new JobParameters());
                 } catch (JobExecutionException e) {
                     throw new IllegalStateException(e);
                 }
