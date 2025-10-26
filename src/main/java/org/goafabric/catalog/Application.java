@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 
 @SpringBootApplication
 @ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
-@RegisterReflection(classes = {java.sql.Types.class},
-        memberCategories = {MemberCategory.INVOKE_PUBLIC_METHODS, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.ACCESS_DECLARED_FIELDS})
+@RegisterReflection(classes = {org.flywaydb.core.internal.configuration.extensions.PrepareScriptFilenameConfigurationExtension.class, tools.jackson.databind.jsontype.NamedType.class, org.hibernate.boot.models.annotations.internal.TenantIdAnnotation.class
+}, memberCategories = {MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS})
 public class Application {
 
     public static void main(String[] args){
