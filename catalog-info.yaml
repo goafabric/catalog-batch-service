@@ -21,8 +21,8 @@ metadata:
     github.com/actions: goafabric/catalog-batch-service
     argocd/app-name: catalog-application
     backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/adr/catalog-service/
-  #  kiali.io/provider: default
-  #  kiali.io/namespace: core
+    kiali.io/provider: default
+    kiali.io/namespace: core
   links:
     - url: https://github.com/goafabric/catalog-service
       title: GitHub Repository
