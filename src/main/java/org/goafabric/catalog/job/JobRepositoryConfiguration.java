@@ -1,6 +1,5 @@
 package org.goafabric.catalog.job;
 
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.support.DefaultBatchConfiguration;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
@@ -12,8 +11,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableBatchProcessing
-public class BatchConfig extends DefaultBatchConfiguration {
+//@EnableBatchProcessing
+public class JobRepositoryConfiguration extends DefaultBatchConfiguration {
 
     @Bean
     public JobRepository jobRepository(DataSource dataSource, PlatformTransactionManager transactionManager) throws Exception {
