@@ -28,6 +28,6 @@ public class InsuranceController {
 
     @GetMapping("/findByDisplay")
     public List<InsuranceEo> findByDisplay(@RequestParam("display") String display) {
-        return repository.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWith(display);
     }
 }

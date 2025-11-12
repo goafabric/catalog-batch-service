@@ -1,24 +1,24 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
-val group: String by project
 val version: String by project
-java.sourceCompatibility = JavaVersion.VERSION_24
+val javaVersion = "25"
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 
 val dockerRegistry = "goafabric"
-val baseImage = "eclipse-temurin:24.0.1_9-jre@sha256:f46122a0c12ca47dbad8cf145aea4b7373a4c5eccdd9cfbadaf84ed9621e2b56"
+val baseImage = "eclipse-temurin:25-jre@sha256:74d5c631e5db5a44e7f5a2dd49f93f0c6f7b8c22c1dc1b8e1caec7009872c5c3"
 
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "4.0.0-M2"
+	id("org.springframework.boot") version "4.0.0-RC1"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.graalvm.buildtools.native") version "0.11.0"
+	id("org.graalvm.buildtools.native") version "0.11.2"
 
 	id("com.google.cloud.tools.jib") version "3.4.5"
 	id("net.researchgate.release") version "3.1.0"
-	id("org.sonarqube") version "6.2.0.5505"
+	id("org.sonarqube") version "7.0.0.6105"
 
-	id("org.cyclonedx.bom") version "2.3.1"
+	id("org.cyclonedx.bom") version "3.0.1"
 	id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
 
@@ -32,9 +32,9 @@ dependencies {
 	constraints {
 		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 		implementation("org.mapstruct:mapstruct:1.6.3")
-		implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+		implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 		implementation("io.github.resilience4j:resilience4j-spring-boot3:2.3.0")
-		implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.1.2")
+		//implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.2.0")
 		testImplementation("com.tngtech.archunit:archunit-junit5:1.4.1")
 	}
 }
@@ -45,11 +45,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-batch")
 
 	//monitoring
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("io.micrometer:micrometer-registry-prometheus")
-
-	implementation("io.micrometer:micrometer-tracing-bridge-otel")
-	implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
 
@@ -57,18 +55,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
-	implementation("org.flywaydb:flyway-core")
+	implementation("org.springframework.boot:spring-boot-starter-flyway")
 	implementation("org.flywaydb:flyway-database-postgresql")
 
 	//mongodb
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
 	//test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-	//spring boot 4.0
-	implementation("org.springframework.boot:spring-boot-starter-opentelemetry")
-	implementation("org.springframework.boot:spring-boot-starter-flyway")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<Test> {
@@ -91,7 +85,7 @@ tasks.register("dockerImageNative") { description= "Native Image"; group = "buil
 tasks.named<BootBuildImage>("bootBuildImage") {
 	val nativeImageName = "${dockerRegistry}/${project.name}-native:${project.version}"
 	imageName.set(nativeImageName)
-	environment.set(mapOf("BP_NATIVE_IMAGE" to "true", "BP_JVM_VERSION" to "24", "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" to "-J-Xmx5000m -march=compatibility"))
+	environment.set(mapOf("BP_NATIVE_IMAGE" to "true", "BP_JVM_VERSION" to javaVersion, "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" to "-J-Xmx5000m -march=compatibility"))
 	doLast {
 		project.objects.newInstance<InjectedExecOps>().execOps.exec { commandLine("/bin/sh", "-c", "docker run --rm $nativeImageName -check-integrity") }
 		project.objects.newInstance<InjectedExecOps>().execOps.exec { commandLine("/bin/sh", "-c", "docker push $nativeImageName") }
@@ -107,13 +101,4 @@ openApi {
 	outputDir.set(file("doc/generated"))
 	customBootRun { args.set(listOf("--server.port=8080")) }
 	tasks.forkedSpringBootRun { dependsOn("compileAotJava", "processAotResources") }
-}
-
-//TODO: workaround for jib + java24, https://github.com/GoogleContainerTools/jib/pull/4252
-buildscript {
-	configurations.all {
-		resolutionStrategy {
-			force("org.ow2.asm:asm:9.7.1")
-		}
-	}
 }

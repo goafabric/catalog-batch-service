@@ -25,7 +25,6 @@ springdoc.swagger-ui.path: /swagger-ui/index.html
 spring.application.name: catalog-batch-service
 management.tracing.sampling.probability: "1.0"
 logging.level.io.opentelemetry: "OFF"
-logging.level.io.micrometer.registry.otlp: "OFF"
 management.otlp.tracing.endpoint: "http://localhost:4318/v1/traces"
 
 #security
@@ -60,10 +59,10 @@ database.provisioning.goals: "-import-catalog-data"
 
 #mongo
 spring.autoconfigure.exclude: ${mongodb.autoconfiguration}
-spring.data.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/catalog?authSource=admin"
+spring.mongodb.uri: "mongodb://mongodb:mongodb@localhost:27017/catalog?authSource=admin"
 
-mongodb.autoconfiguration: "org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.MongoDataAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.MongoRepositoriesAutoConfiguration"
-jdbc.autoconfiguration: "org.springframework.boot.data.jdbc.autoconfigure.JdbcRepositoriesAutoConfiguration"
+mongodb.autoconfiguration: "org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.MongoDataAutoConfiguration, org.springframework.boot.data.mongodb.autoconfigure.DataMongoRepositoriesAutoConfiguration"
+jdbc.autoconfiguration: "org.springframework.boot.data.jdbc.autoconfigure.DataJdbcRepositoriesAutoConfiguration"
 
 #logging
 logging.level.root: "WARN"
@@ -73,4 +72,6 @@ logging.level.org.goafabric: "INFO"
 logging.level.org.flywaydb.core: "INFO"
 logging.level.org.hibernate.SQL: "INFO"
 
-springdoc.enable-kotlin: false #TODO
+
+springdoc.enable-kotlin: false
+logging.level.io.micrometer.registry.otlp: "OFF"
