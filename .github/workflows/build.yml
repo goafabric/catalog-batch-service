@@ -15,12 +15,12 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-version: 9.0.0
+          gradle-version: 9.1.0
 
       - name: Test
         run: gradle build test generateOpenApiDocs
@@ -36,7 +36,7 @@ jobs:
           git add doc/generated && git diff --cached --quiet doc/generated || git commit -m "Update generated docs" -- doc/generated && git push --force
 
       - name: Archive SBOM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: SBOM
           path: build/resources/main/META-INF/sbom/application.cdx.json
@@ -57,12 +57,12 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-version: 9.0.0
+          gradle-version: 9.1.0
 
       - name: Container Images
         run: gradle jib dockerImageNative
@@ -85,12 +85,12 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-version: 9.0.0
+          gradle-version: 9.1.0
 
       - name: Setup git config
         run: |
