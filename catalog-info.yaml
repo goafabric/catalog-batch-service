@@ -5,7 +5,7 @@ metadata:
   description: |
     Catalog Application for ICD10, Coverages ...
 
-    [![ArgoCD Status](https://v2202402203466256255.megasrv.de/argocd/api/badge?name=catalog-application&revision=true)](https://v2202402203466256255.megasrv.de/argocd/applications/catalog-application)
+    [![ArgoCD Status](https://v2202402203466256255.megasrv.de/argocd/api/badge?name=catalog-application&revision=false)](https://v2202402203466256255.megasrv.de/argocd/applications/catalog-application)
     
     [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
     [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Acatalog-batch-service&metric=coverage)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Acatalog-batch-service)
