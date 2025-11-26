@@ -11,5 +11,5 @@ public interface ConditionRepository extends CrudRepository<ConditionEo, String>
     ConditionEo findByCode(String code);
 
     @Query("SELECT * FROM catalog.condition WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')") //TODO: workaround for data jdbc schema bug
-    List<ConditionEo> findByDisplayStartsWithIgnoreCase(String display);
+    List<ConditionEo> findByDisplayStartsWith(String display);
 }

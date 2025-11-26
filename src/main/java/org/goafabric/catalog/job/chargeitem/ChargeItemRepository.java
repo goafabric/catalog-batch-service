@@ -10,5 +10,5 @@ public interface ChargeItemRepository extends CrudRepository<ChargeItemEo, Strin
     ChargeItemEo findByCode(String code);
 
     @Query("SELECT * FROM catalog.chargeitem WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')")
-    List<ChargeItemEo> findByDisplayStartsWithIgnoreCase(String display);
+    List<ChargeItemEo> findByDisplayStartsWith(String display);
 }
