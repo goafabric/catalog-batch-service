@@ -14,7 +14,6 @@ import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemRe
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class ChargeItemImportConfiguration {
@@ -30,10 +29,9 @@ public class ChargeItemImportConfiguration {
     @Bean
     public Step chargeItemStep(ItemReader<ChargeItemEo> diagnosisItemReader,
                                ItemWriter<ChargeItemEo> chargeItemEoItemWriter,
-                               JobRepository jobRepository,
-                               PlatformTransactionManager ptm) {
+                               JobRepository jobRepository) {
         return new StepBuilder("chargeItemStep", jobRepository)
-                .<ChargeItemEo, ChargeItemEo>chunk(2, ptm)
+                .<ChargeItemEo, ChargeItemEo>chunk(2)
                 .reader(diagnosisItemReader)
                 .writer(chargeItemEoItemWriter)
                 .listener(new StepCompletionListener())

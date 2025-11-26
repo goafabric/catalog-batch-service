@@ -14,7 +14,6 @@ import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemRe
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class ConditionImportConfiguration {
@@ -30,10 +29,9 @@ public class ConditionImportConfiguration {
     @Bean(name = "conditionStep")
     public Step conditionStep(ItemReader<ConditionEo> conditionItemReader,
                               ItemWriter<ConditionEo> conditionEoItemWriter,
-                              JobRepository jobRepository,
-                              PlatformTransactionManager ptm) {
+                              JobRepository jobRepository) {
         return new StepBuilder("conditionStep", jobRepository)
-                .<ConditionEo, ConditionEo>chunk(2, ptm)
+                .<ConditionEo, ConditionEo>chunk(2)
                 .reader(conditionItemReader)
                 .writer(conditionEoItemWriter)
                 .listener(new StepCompletionListener())

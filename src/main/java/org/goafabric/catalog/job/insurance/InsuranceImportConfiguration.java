@@ -14,7 +14,6 @@ import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemRe
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class InsuranceImportConfiguration {
@@ -30,10 +29,9 @@ public class InsuranceImportConfiguration {
     @Bean
     public Step insuranceStep(ItemReader<InsuranceEo> diagnosisItemReader,
                               ItemWriter<InsuranceEo> insuranceEoItemWriter,
-                              JobRepository jobRepository,
-                              PlatformTransactionManager ptm) {
+                              JobRepository jobRepository) {
         return new StepBuilder("insuranceStep", jobRepository)
-                .<InsuranceEo, InsuranceEo>chunk(2, ptm)
+                .<InsuranceEo, InsuranceEo>chunk(2)
                 .reader(diagnosisItemReader)
                 .writer(insuranceEoItemWriter)
                 .listener(new StepCompletionListener())
