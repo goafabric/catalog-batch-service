@@ -28,6 +28,6 @@ public class ChargeItemController {
 
     @GetMapping("/findByDisplay")
     public List<ChargeItemEo> findByDisplay(@RequestParam("display") String display) {
-        return repository.findByDisplayStartsWithIgnoreCase(display);
+        return repository.findByDisplayStartsWith(display);
     }
 }
