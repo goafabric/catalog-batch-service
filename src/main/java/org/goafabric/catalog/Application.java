@@ -2,12 +2,16 @@ package org.goafabric.catalog;
 
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.EnableJdbcJobRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportRuntimeHints;
 
 @SpringBootApplication
 @ImportRuntimeHints(Application.ApplicationRuntimeHints.class)
+@EnableBatchProcessing
+@EnableJdbcJobRepository(tablePrefix = "catalog.BATCH_")
 public class Application {
 
     static void main(String[] args){
