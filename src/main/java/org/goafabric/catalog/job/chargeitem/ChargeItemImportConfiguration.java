@@ -4,7 +4,6 @@ import org.goafabric.catalog.job.JobCompletionListener;
 import org.goafabric.catalog.job.StepCompletionListener;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.job.parameters.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -21,7 +20,7 @@ public class ChargeItemImportConfiguration {
     @Bean
     public Job chargeItemJob(Step chargeItemStep, JobCompletionListener listener, JobRepository jobRepository) {
         return new JobBuilder("chargeItemJob", jobRepository)
-                .incrementer(new RunIdIncrementer())
+                //.incrementer(new RunIdIncrementer())
                 .listener(listener).flow(chargeItemStep).end()
                 .build();
     }

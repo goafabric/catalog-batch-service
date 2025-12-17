@@ -1,3 +1,6 @@
+# 4.0.1
+- fix for multiple job imports
+
 # 4.0.0
 - upgrade to Spring Boot 4.0.0
 
