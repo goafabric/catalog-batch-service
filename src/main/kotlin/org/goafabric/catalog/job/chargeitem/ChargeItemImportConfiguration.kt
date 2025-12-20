@@ -47,13 +47,13 @@ class ChargeItemImportConfiguration {
             .resource(ClassPathResource("catalogs/goae.csv"))
             .delimited().delimiter(";")
             .names("code", "display", "price")
-            .fieldSetMapper(FieldSetMapper { fieldSet: FieldSet? ->
+            .fieldSetMapper { fieldSet: FieldSet ->
                 ChargeItemEo(
-                    code = fieldSet!!.readString("code"),
+                    code = fieldSet.readString("code"),
                     display = fieldSet.readString("display"),
                     price = fieldSet.readDouble("price")
                 )
-            })
+            }
             .build()
     }
 

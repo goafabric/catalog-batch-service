@@ -47,13 +47,13 @@ class InsuranceImportConfiguration {
             .resource(ClassPathResource("catalogs/insurance_pkv.csv"))
             .delimited().delimiter(";")
             .names("code", "display", "shortname")
-            .fieldSetMapper(FieldSetMapper { fieldSet: FieldSet? ->
+            .fieldSetMapper { fieldSet: FieldSet ->
                 InsuranceEo(
-                    code = fieldSet!!.readString("code"),
+                    code = fieldSet.readString("code"),
                     display = fieldSet.readString("display"),
                     shortname = fieldSet.readString("shortname")
                 )
-            })
+            }
             .build()
     }
 

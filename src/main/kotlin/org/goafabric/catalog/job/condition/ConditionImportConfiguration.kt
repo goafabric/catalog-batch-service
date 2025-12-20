@@ -47,13 +47,13 @@ class ConditionImportConfiguration {
             .resource(ClassPathResource("catalogs/icd10.csv"))
             .delimited().delimiter(";")
             .names("code", "display", "shortname")
-            .fieldSetMapper(FieldSetMapper { fieldSet: FieldSet? ->
+            .fieldSetMapper { fieldSet: FieldSet ->
                 ConditionEo(
-                    code = fieldSet!!.readString("code"),
+                    code = fieldSet.readString("code"),
                     display = fieldSet.readString("display"),
                     shortname = fieldSet.readString("shortname")
                 )
-            })
+            }
             .build()
     }
 
