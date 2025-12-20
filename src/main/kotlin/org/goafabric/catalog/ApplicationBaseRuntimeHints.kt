@@ -79,5 +79,8 @@ class ApplicationBaseRuntimeHints : RuntimeHintsRegistrar {
         hints.resources().registerPattern("db/migration/h2/*.sql")
         hints.resources().registerPattern("db/migration/common/*.sql")
         hints.resources().registerPattern("db/migration/postgresql/*.sql")
+
+        //
+        hints.resources().registerPattern("catalogs/*.csv")
     }
 }
