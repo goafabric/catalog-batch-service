@@ -19,7 +19,7 @@ import java.util.function.Consumer
 class JobLauncherStarter(
     private val jobOperator: JobOperator,
     private val jobRepository: JobRepository,
-    private val jobs: MutableList<Job?>,
+    private val jobs: MutableList<Job>,
     private val applicationContext: ApplicationContext,
     @param:Value("\${database.provisioning.goals:}"
     ) private val goals: String
@@ -27,16 +27,17 @@ class JobLauncherStarter(
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
     override fun run(vararg args: String) {
+        jobs.forEach { job -> job.toString() }
         if (goals.contains("-import-catalog-data")) {
-            jobs.forEach(Consumer { job: Job? ->
+            jobs.forEach{ job: Job ->
                 try {
-                    if (jobRepository.getJobInstance(job!!.getName(), JobParameters()) == null) {
+                    if (jobRepository.getJobInstance(job.name, JobParameters()) == null) {
                         jobOperator.start(job, JobParameters())
                     }
                 } catch (e: JobExecutionException) {
                     throw IllegalStateException(e)
                 }
-            })
+            }
         }
 
         if (goals.contains("-terminate")) {
