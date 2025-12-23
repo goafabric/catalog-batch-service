@@ -51,7 +51,7 @@
           {
             "name": "display",
             "in": "query",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -147,7 +147,7 @@
           {
             "name": "display",
             "in": "query",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -180,7 +180,7 @@
           {
             "name": "code",
             "in": "query",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -240,7 +240,7 @@
           {
             "name": "display",
             "in": "query",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -273,7 +273,7 @@
           {
             "name": "code",
             "in": "query",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             }
