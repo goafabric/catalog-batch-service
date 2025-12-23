@@ -15,12 +15,12 @@ class ConditionController(private val repository: ConditionRepository) {
 
 
     @GetMapping("/findByCode")
-    fun findByCode(@RequestParam("code") code: String?): ConditionEo? {
+    fun findByCode(@RequestParam("code") code: String): ConditionEo {
         return repository.findByCode(code)
     }
 
     @GetMapping("/findByDisplay")
-    fun findByDisplay(@RequestParam("display") display: String?): MutableList<ConditionEo?>? {
+    fun findByDisplay(@RequestParam("display") display: String): MutableList<ConditionEo> {
         return repository.findByDisplayStartsWith(display)
     }
 }

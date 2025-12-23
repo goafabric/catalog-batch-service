@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository
 
 
 interface ConditionRepository : CrudRepository<ConditionEo, String> {
-    fun findByCode(code: String?): ConditionEo?
+    fun findByCode(code: String): ConditionEo
 
-    fun findByDisplayStartsWith(display: String?): MutableList<ConditionEo?>?
+    fun findByDisplayStartsWith(display: String): MutableList<ConditionEo>
 }

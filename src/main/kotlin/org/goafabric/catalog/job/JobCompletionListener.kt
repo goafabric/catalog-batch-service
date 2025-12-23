@@ -13,7 +13,7 @@ class JobCompletionListener : JobExecutionListener {
 
     override fun afterJob(jobExecution: JobExecution) {
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("Job finished: {}", jobExecution.getJobInstance().getJobName())
+            log.info("Job finished: {}", jobExecution.jobInstance.jobName)
         } else {
             log.error("There was a problem with jor job: {}", jobExecution.getJobInstance().getJobName())
         }

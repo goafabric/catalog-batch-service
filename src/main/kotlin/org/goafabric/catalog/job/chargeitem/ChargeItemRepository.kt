@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository
 
 interface ChargeItemRepository : CrudRepository<ChargeItemEo, String> {
     @Query("SELECT * FROM catalog.chargeitem WHERE code = :code")
-    fun findByCode(code: String?): ChargeItemEo?
+    fun findByCode(code: String): ChargeItemEo
 
     @Query("SELECT * FROM catalog.chargeitem WHERE UPPER(display) LIKE CONCAT(UPPER(:display), '%')")
-    fun findByDisplayStartsWith(display: String?): MutableList<ChargeItemEo?>?
+    fun findByDisplayStartsWith(display: String): MutableList<ChargeItemEo>
 }

@@ -20,7 +20,7 @@ import org.springframework.core.io.ClassPathResource
 @Configuration
 class ChargeItemImportConfiguration {
     @Bean
-    fun chargeItemJob(chargeItemStep: Step, listener: JobCompletionListener?, jobRepository: JobRepository): Job? {
+    fun chargeItemJob(chargeItemStep: Step, listener: JobCompletionListener, jobRepository: JobRepository): Job? {
         return JobBuilder("chargeItemJob", jobRepository) //.incrementer(new RunIdIncrementer())
             .listener(listener).flow(chargeItemStep).end()
             .build()

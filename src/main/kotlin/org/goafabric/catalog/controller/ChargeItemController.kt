@@ -14,12 +14,12 @@ class ChargeItemController(private val repository: ChargeItemRepository) {
     }
 
     @GetMapping("/findByCode")
-    fun findByCode(@RequestParam("code") code: String?): ChargeItemEo? {
+    fun findByCode(@RequestParam("code") code: String): ChargeItemEo? {
         return repository.findByCode(code)
     }
 
     @GetMapping("/findByDisplay")
-    fun findByDisplay(@RequestParam("display") display: String?): MutableList<ChargeItemEo?>? {
+    fun findByDisplay(@RequestParam("display") display: String): MutableList<ChargeItemEo> {
         return repository.findByDisplayStartsWith(display)
     }
 }

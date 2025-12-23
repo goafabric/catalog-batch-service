@@ -19,7 +19,7 @@ class InsuranceController(private val repository: InsuranceRepository) {
     }
 
     @GetMapping("/findByDisplay")
-    fun findByDisplay(@RequestParam("display") display: String?): MutableList<InsuranceEo?>? {
+    fun findByDisplay(@RequestParam("display") display: String): MutableList<InsuranceEo> {
         return repository.findByDisplayStartsWith(display)
     }
 }
