@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 class ConditionController(private val repository: ConditionRepository) {
     @GetMapping("/{id}")
     fun getById(@PathVariable id: String): ConditionEo {
-        return repository.findById(id).orElseThrow()!!
+        return repository.findById(id).orElseThrow()
     }
 
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 class InsuranceController(private val repository: InsuranceRepository) {
     @GetMapping("/{id}")
     fun getById(@PathVariable id: String): InsuranceEo {
-        return repository.findById(id).orElseThrow()!!
+        return repository.findById(id).orElseThrow()
     }
 
     @GetMapping("/findByCode")

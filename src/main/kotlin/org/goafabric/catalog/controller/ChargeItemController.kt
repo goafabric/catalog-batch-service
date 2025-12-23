@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*
 class ChargeItemController(private val repository: ChargeItemRepository) {
     @GetMapping("/{id}")
     fun getById(@PathVariable id: String): ChargeItemEo {
-        return repository.findById(id).orElseThrow()!!
+        return repository.findById(id).orElseThrow()
     }
 
     @GetMapping("/findByCode")
-    fun findByCode(@RequestParam("code") code: String): ChargeItemEo? {
+    fun findByCode(@RequestParam("code") code: String): ChargeItemEo {
         return repository.findByCode(code)
     }
 
