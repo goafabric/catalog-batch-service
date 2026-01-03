@@ -2,19 +2,18 @@ package org.goafabric.catalog.job.condition;
 
 import org.goafabric.catalog.job.JobCompletionListener;
 import org.goafabric.catalog.job.StepCompletionListener;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
+import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.job.parameters.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.batch.infrastructure.item.ItemReader;
+import org.springframework.batch.infrastructure.item.ItemWriter;
+import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class ConditionImportConfiguration {
@@ -29,11 +28,10 @@ public class ConditionImportConfiguration {
 
     @Bean(name = "conditionStep")
     public Step conditionStep(ItemReader<ConditionEo> conditionItemReader,
-                           ItemWriter<ConditionEo> conditionEoItemWriter,
-                           JobRepository jobRepository,
-                           PlatformTransactionManager ptm) {
+                              ItemWriter<ConditionEo> conditionEoItemWriter,
+                              JobRepository jobRepository) {
         return new StepBuilder("conditionStep", jobRepository)
-                .<ConditionEo, ConditionEo>chunk(2, ptm)
+                .<ConditionEo, ConditionEo>chunk(2)
                 .reader(conditionItemReader)
                 .writer(conditionEoItemWriter)
                 .listener(new StepCompletionListener())
