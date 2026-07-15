@@ -16,12 +16,12 @@ plugins {
 	id("org.springframework.boot") version "4.1.0"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.graalvm.buildtools.native") version "0.11.5"
-	id("com.google.cloud.tools.jib") version "3.5.3"
+	id("com.google.cloud.tools.jib") version "3.5.4"
 	id("net.researchgate.release") version "3.1.0"
 	id("org.sonarqube") version "7.3.1.8318"
 
-	kotlin("jvm") version "2.4.0"
-	kotlin("plugin.spring") version "2.4.0"
+	kotlin("jvm") version "2.4.10"
+	kotlin("plugin.spring") version "2.4.10"
 
 	id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
